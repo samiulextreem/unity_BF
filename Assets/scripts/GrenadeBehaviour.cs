@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using MiscUtil.Extensions.TimeRelated;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
@@ -14,17 +15,38 @@ public class GrenadeBehaviour : MonoBehaviour
     public float grenadeDamage;
     public float xplotionRadious;
     public float xplotionForce;
+    public Rigidbody2D gndBody;
+    public float throwForce;
+    public float throwYangle;
 
 
     void Start()
     {
+        Transform plyr = GameObject.Find("player").transform;
+        Transform GndOriginalPos = plyr.GetChild(3).GetComponent<Transform>();
+        Vector3 x = GndOriginalPos.transform.right;
+        Vector3 f = x + new Vector3(0f, throwYangle, 0);
+        print(f);
+
+
+       
         countdown = FuseTime;
-        print(this.name);
+        
+        gndBody = this.GetComponent<Rigidbody2D>();
+
+        gndBody.AddForce(f * throwForce, ForceMode2D.Impulse);
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        
+
+
+       
+
+
         countdown = countdown - Time.deltaTime;
         
         if(countdown <= 0)
@@ -54,7 +76,7 @@ public class GrenadeBehaviour : MonoBehaviour
                 
                 explotionDir.y = explotionDir.y + upwardsModifier;
                 explotionDir.Normalize();
-                print("Name -- " + nearbyObject.name + " normalize explotdir -- " + explotionDir + "  explot dist --" + explotionDist);
+                //print("Name -- " + nearbyObject.name + " normalize explotdir -- " + explotionDir + "  explot dist --" + explotionDist);
 
                 rb2d.AddForce( xplotionForce* explotionDir,ForceMode2D.Impulse);
                 //rb2d.AddForce(explotionDir*xplotionForce, ForceMode2D.Force);
@@ -62,32 +84,12 @@ public class GrenadeBehaviour : MonoBehaviour
             }
         }
         
-        //explosionCameraShake.instance.shakeCamera(xPlotionshake, xPlotiontime);
+        explosionCameraShake.instance.shakeCamera(xPlotionshake, xPlotiontime);
       
 
     }
 
 
 
-    /*
-    void AddExplosionForce(Rigidbody2D rb, float explosionForce, Vector2 explosionPosition, float upwardsModifier = 0.0F, ForceMode2D mode = ForceMode2D.Force)
-    {
-        var explosionDir = rb.position - explosionPosition;
-        var explosionDistance = explosionDir.magnitude;
-
-        // Normalize without computing magnitude again
-        if (upwardsModifier == 0)
-            explosionDir /= explosionDistance;
-        else
-        {
-            // From Rigidbody.AddExplosionForce doc:
-            // If you pass a non-zero value for the upwardsModifier parameter, the direction
-            // will be modified by subtracting that value from the Y component of the centre point.
-            explosionDir.y += upwardsModifier;
-            explosionDir.Normalize();
-        }
-
-        rb.AddForce(Mathf.Lerp(0, explosionForce, (1 - explosionDistance)) * explosionDir, mode);
-    }
-    */
+  
 }

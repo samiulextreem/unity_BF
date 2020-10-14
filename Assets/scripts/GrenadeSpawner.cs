@@ -11,7 +11,7 @@ public class GrenadeSpawner : MonoBehaviour
     public float NextTimeToThrw = 0f;
     //public Transform butt;
     private OnclickedButton clickbuttGrend;
-    public float throwForce;
+    
 
     
 
@@ -29,22 +29,21 @@ public class GrenadeSpawner : MonoBehaviour
     void Update()
     {
 
-        if (clickbuttGrend.isButtPres == true && Time.time >= NextTimeToThrw)
+        if (clickbuttGrend.isButtPres == true && Time.time > NextTimeToThrw)
         {
             NextTimeToThrw = Time.time + 1f / FireRate;
-            Debug.Log("grenade should be spawned");
-
-            GameObject spawnedGnd =  (GameObject)Instantiate(gnd, GndSpawnerPosition.position,GndSpawnerPosition.rotation);
-            print(spawnedGnd.name);
-            Rigidbody2D rb2dGnd =spawnedGnd.GetComponent<Rigidbody2D>();
-            if(rb2dGnd != null)
-            {
-                rb2dGnd.AddForce(GndSpawnerPosition.forward*throwForce, ForceMode2D.Impulse);
-                print("lunch grenade");
-
-            }
-            
+            spawnGnd();
+          
         }
 
     }
+
+    void spawnGnd()
+    {
+        GameObject spawnedGnd = (GameObject)Instantiate(gnd, GndSpawnerPosition.position, GndSpawnerPosition.rotation);
+        print(spawnedGnd.name);
+
+    }
+
+
 }
