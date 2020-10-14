@@ -15,6 +15,10 @@ public class MookBulletBehaviour : MonoBehaviour
     public float randomSpreadRotationZ;
     public float bulletSpreadMax;
     public float bulletSpreadMin;
+    public GameObject ObjectToDamage;
+    public ObjectHP HP;
+    public float enemyBulleteDamage;
+    public Rigidbody2D Collidedrb2D;
 
 
     // Start is called before the first frame update
@@ -55,15 +59,22 @@ public class MookBulletBehaviour : MonoBehaviour
             print("object is " + collision.collider.gameObject.name);
             Destroy(gameObject);
         }
-        else if (collision.collider.gameObject.layer == LayerMask.NameToLayer("enemy"))
-        {
-            print("object is " + collision.collider.gameObject.name);
-            Destroy(gameObject);
-        }
         else if (collision.collider.gameObject.layer == LayerMask.NameToLayer("player"))
         {
             print("object is " + collision.collider.gameObject.name);
             Destroy(gameObject);
         }
+
+
+
+        ObjectToDamage = GameObject.Find(collision.collider.gameObject.name);
+
+        HP = ObjectToDamage.GetComponent<ObjectHP>();
+        Collidedrb2D = gameObject.GetComponent<Rigidbody2D>();
+        HP.reduceHP(enemyBulleteDamage);
+        print(ObjectToDamage.name + " has " + HP.currentHP); 
+
+
+
     }
 }

@@ -153,3 +153,7 @@ MonoBehaviour:
   randomSpreadRotationZ: 0
   bulletSpreadMax: 0
   bulletSpreadMin: 0
+  ObjectToDamage: {fileID: 0}
+  HP: {fileID: 0}
+  enemyBulleteDamage: 5
+  Collidedrb2D: {fileID: 0}
