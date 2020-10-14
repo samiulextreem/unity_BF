@@ -17,6 +17,10 @@ public class BullerBehaviour : MonoBehaviour
     public float randomSpreadRotationZ ;
     public float bulletSpreadMax;
     public float bulletSpreadMin;
+    public GameObject ObjectToDamage;
+    public ObjectHP HP;
+    public float playerBullateDamage;
+    public Rigidbody2D Collidedrb2D;
 
  
 
@@ -58,13 +62,24 @@ public class BullerBehaviour : MonoBehaviour
 
         if(collision.collider.gameObject.layer == LayerMask.NameToLayer("ground"))
         {
-            print("object is " + collision.collider.gameObject.name);
+            //print("object is " + collision.collider.gameObject.name);
             Destroy(gameObject);
         }else if (collision.collider.gameObject.layer == LayerMask.NameToLayer("enemy"))
         {
-            print("object is " + collision.collider.gameObject.name);
+            //print("object is " + collision.collider.gameObject.name);
             Destroy(gameObject);
         }
+
+        ObjectToDamage = GameObject.Find(collision.collider.gameObject.name);
+        
+        HP = ObjectToDamage.GetComponent<ObjectHP>();
+        Collidedrb2D = gameObject.GetComponent<Rigidbody2D>();
+        HP.reduceHP(playerBullateDamage);
+        print(ObjectToDamage.name+" has "+HP.currentHP);
+
+        
+
+
     }
 
 }
