@@ -24,7 +24,7 @@ public class Jump : MonoBehaviour
     public GameObject gun;
     public GameObject gunPoint;
     //public Transform butt;
-    public OnclickedButton clickbutt;
+    public OnclickedButton clickbuttJump;
     public Joystick jstk;
     
     
@@ -35,7 +35,7 @@ public class Jump : MonoBehaviour
     {
         rb2d = GetComponent<Rigidbody2D>();
         Transform canvas = GameObject.Find("Canvas").transform;
-        clickbutt = canvas.GetChild(1).GetComponent<OnclickedButton>();
+        clickbuttJump = canvas.GetChild(1).GetComponent<OnclickedButton>();
         //print(clickbutt.name);
         
 
@@ -52,14 +52,14 @@ public class Jump : MonoBehaviour
         Debug.DrawRay(this.transform.position, this.transform.right * hit2dWallDetectionLength, Color.green);
         hit2dWallhanging = Physics2D.Raycast(this.transform.position, this.transform.right, hit2dWallDetectionLength, walllayer);
 
-        if (clickbutt.isButtPres == true && (IsGrounded == true || jump_count > 1))
+        if (clickbuttJump.isButtPres == true && (IsGrounded == true || jump_count > 1))
         {
            
             
             rb2d.velocity = Vector2.up * jump_force;
             jump_count = jump_count - 1;
             //print("executed");
-            clickbutt.isButtPres = false;
+            clickbuttJump.isButtPres = false;
 
 
         }
@@ -79,7 +79,7 @@ public class Jump : MonoBehaviour
         {
             rb2d.velocity += Vector2.up * Physics2D.gravity.y *(fallMultiplier - 1) * Time.deltaTime;
         }
-        else if(rb2d.velocity.y >0 && !clickbutt.isButtPres == false) {
+        else if(rb2d.velocity.y >0 && !clickbuttJump.isButtPres == false) {
      
             rb2d.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier -1)* Time.deltaTime;
     

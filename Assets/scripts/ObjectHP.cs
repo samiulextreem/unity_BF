@@ -9,7 +9,7 @@ public class ObjectHP : MonoBehaviour
     public float currentHP;
     void Start()
     {
-        Debug.Log(this.name+" HP  "+ InitialHP);
+        //Debug.Log(this.name+" HP  "+ InitialHP);
         currentHP = InitialHP;
     }
 

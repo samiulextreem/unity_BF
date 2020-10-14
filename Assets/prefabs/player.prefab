@@ -83,6 +83,53 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1191814366
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1191814367}
+  - component: {fileID: 5031661377682989613}
+  m_Layer: 10
+  m_Name: GndPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1191814367
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1191814366}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.52, y: 0.89, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 132667809398388744}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5031661377682989613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1191814366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aacb2b8519144254485bb94dbaa3bc04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gnd: {fileID: 8470475388617446281, guid: e624355ce57d03646a406fde01c82448, type: 3}
+  GndSpawnerPosition: {fileID: 1191814367}
+  FireRate: 1
+  NextTimeToThrw: 0
 --- !u!1 &1698104400
 GameObject:
   m_ObjectHideFlags: 0
@@ -96,7 +143,7 @@ GameObject:
   m_Layer: 0
   m_Name: gunpoint
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -129,7 +176,6 @@ MonoBehaviour:
   bullet: {fileID: 9146111260277153823, guid: d097ecd044093f04bafb864c4bbe9939, type: 3}
   bulletSpawnerPosition: {fileID: 1698104401}
   FireRate: 20
-  ShouldMookShoot: 1
 --- !u!1 &1908248674
 GameObject:
   m_ObjectHideFlags: 0
@@ -198,6 +244,7 @@ Transform:
   - {fileID: 2712156989105881367}
   - {fileID: 1908248675}
   - {fileID: 324952462}
+  - {fileID: 1191814367}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -353,7 +400,7 @@ MonoBehaviour:
   hit2dWallDetectionLength: 0.58
   gun: {fileID: 324952461}
   gunPoint: {fileID: 1698104400}
-  clickbutt: {fileID: 0}
+  clickbuttJump: {fileID: 0}
   jstk: {fileID: 0}
 --- !u!114 &1466986972
 MonoBehaviour:
@@ -368,6 +415,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   InitialHP: 20
+  currentHP: 0
 --- !u!114 &514027934
 MonoBehaviour:
   m_ObjectHideFlags: 0

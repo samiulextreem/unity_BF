@@ -20,7 +20,7 @@ public class BullerBehaviour : MonoBehaviour
     public GameObject ObjectToDamage;
     public ObjectHP HP;
     public float playerBullateDamage;
-    public Rigidbody2D Collidedrb2D;
+    //public Rigidbody2D Collidedrb2D;
 
  
 
@@ -71,11 +71,17 @@ public class BullerBehaviour : MonoBehaviour
         }
 
         ObjectToDamage = GameObject.Find(collision.collider.gameObject.name);
-        
         HP = ObjectToDamage.GetComponent<ObjectHP>();
-        Collidedrb2D = gameObject.GetComponent<Rigidbody2D>();
-        HP.reduceHP(playerBullateDamage);
-        print(ObjectToDamage.name+" has "+HP.currentHP);
+        if (HP != null)
+        {
+            HP.reduceHP(playerBullateDamage);
+            print(ObjectToDamage.name + " has " + HP.currentHP);
+
+        }
+
+        Destroy(gameObject);
+        //Collidedrb2D = gameObject.GetComponent<Rigidbody2D>();
+        
 
         
 

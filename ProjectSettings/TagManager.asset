@@ -18,8 +18,8 @@ TagManager:
   - player
   - EnemyBullet
   - playerBullet
-  - 
-  - 
+  - playerXplossive
+  - GeneralXplosive
   - 
   - 
   - 

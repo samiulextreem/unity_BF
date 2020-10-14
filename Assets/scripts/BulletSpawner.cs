@@ -11,9 +11,9 @@ public class BulletSpawner : MonoBehaviour
     public float FireRate = 15f;
     private float NextTimeToFire = 0f;
     //public Transform butt;
-    private OnclickedButton clickbutt;
+    private OnclickedButton clickbuttBullet;
     //public GameObject ParentObject;
-    public bool ShouldMookShoot = true;
+    //public bool ShouldMookShoot = true;
     
     
 
@@ -24,7 +24,7 @@ public class BulletSpawner : MonoBehaviour
     {
         bulletSpawnerPosition = gameObject.GetComponent<Transform>();
         Transform canvas = GameObject.Find("Canvas").transform;
-        clickbutt = canvas.GetChild(2).GetComponent<OnclickedButton>();
+        clickbuttBullet = canvas.GetChild(2).GetComponent<OnclickedButton>();
         //print(clickbutt.name);
         //Debug.Log("Player's Parent script: " + this.transform.root.name);
       
@@ -38,17 +38,12 @@ public class BulletSpawner : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if(clickbutt.isButtPres == true && Time.time >= NextTimeToFire && this.transform.root.name == "player" ){
+        if(clickbuttBullet.isButtPres == true && Time.time >= NextTimeToFire){
             NextTimeToFire = Time.time + 1f / FireRate;
             Shoot();
 
         }
 
-       
-
-
-        
-        
     }
 
 

@@ -56,12 +56,16 @@ public class MookBulletBehaviour : MonoBehaviour
 
         if (collision.collider.gameObject.layer == LayerMask.NameToLayer("ground"))
         {
-            print("object is " + collision.collider.gameObject.name);
+            //print("object is " + collision.collider.gameObject.name);
             Destroy(gameObject);
         }
         else if (collision.collider.gameObject.layer == LayerMask.NameToLayer("player"))
         {
-            print("object is " + collision.collider.gameObject.name);
+            //print("object is " + collision.collider.gameObject.name);
+            Destroy(gameObject);
+        }
+        else
+        {
             Destroy(gameObject);
         }
 
@@ -70,9 +74,14 @@ public class MookBulletBehaviour : MonoBehaviour
         ObjectToDamage = GameObject.Find(collision.collider.gameObject.name);
 
         HP = ObjectToDamage.GetComponent<ObjectHP>();
-        Collidedrb2D = gameObject.GetComponent<Rigidbody2D>();
-        HP.reduceHP(enemyBulleteDamage);
-        print(ObjectToDamage.name + " has " + HP.currentHP); 
+        if (HP != null)
+        {
+            Collidedrb2D = gameObject.GetComponent<Rigidbody2D>();
+            HP.reduceHP(enemyBulleteDamage);
+
+        }
+        
+        //print(ObjectToDamage.name + " has " + HP.currentHP); 
 
 
 

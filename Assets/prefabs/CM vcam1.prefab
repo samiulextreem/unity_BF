@@ -116,6 +116,7 @@ GameObject:
   - component: {fileID: 6806639432783434527}
   - component: {fileID: 6806639432783434520}
   - component: {fileID: 6806639432783434526}
+  - component: {fileID: -1527287145060076647}
   m_Layer: 0
   m_Name: CM vcam1
   m_TagString: Untagged
@@ -189,3 +190,19 @@ MonoBehaviour:
   shakeTimer: -0.005674295
   startingIntensity: 0.3
   shakeTimeTotal: 0.1
+--- !u!114 &-1527287145060076647
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6806639432783434521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23adf0a12b633a84aa95dff6553fb48d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  plyLandChk: {fileID: 0}
+  shakeTimer: 0
+  startingIntensity: 0
+  shakeTimeTotal: 0
