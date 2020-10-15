@@ -312,6 +312,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   InitialHP: 10
+  currentHP: 0
+  bloodSpalsh: {fileID: 4355358552732549675, guid: 434838f3d38026c4ab079643efff37a4, type: 3}
 --- !u!1 &171542828942468660
 GameObject:
   m_ObjectHideFlags: 0

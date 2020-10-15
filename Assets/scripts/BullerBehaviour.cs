@@ -75,7 +75,7 @@ public class BullerBehaviour : MonoBehaviour
         if (HP != null)
         {
             HP.reduceHP(playerBullateDamage);
-            print(ObjectToDamage.name + " has " + HP.currentHP);
+           //print(ObjectToDamage.name + " has " + HP.currentHP);
 
         }
 
