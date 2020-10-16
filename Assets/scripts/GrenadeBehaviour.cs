@@ -78,7 +78,7 @@ public class GrenadeBehaviour : MonoBehaviour
                 
                 explotionDir.y = explotionDir.y + upwardsModifier;
                 explotionDir.Normalize();
-                print("Name -- " + nearbyObject.name + " normalize explotdir -- " + explotionDir + "  explot dist --" + explotionDist);
+                //print("Name -- " + nearbyObject.name + " normalize explotdir -- " + explotionDir + "  explot dist --" + explotionDist);
 
                 rb2d.AddForce( xplotionForce* explotionDir,ForceMode2D.Impulse);
                 

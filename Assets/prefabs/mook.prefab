@@ -178,6 +178,7 @@ GameObject:
   - component: {fileID: 171542828749143177}
   - component: {fileID: 171542828749143190}
   - component: {fileID: 171542828749143178}
+  - component: {fileID: 6123405288908642813}
   m_Layer: 9
   m_Name: mook
   m_TagString: Untagged
@@ -314,6 +315,27 @@ MonoBehaviour:
   InitialHP: 10
   currentHP: 0
   destroyParticl: {fileID: 4355358552732549675, guid: 434838f3d38026c4ab079643efff37a4, type: 3}
+--- !u!114 &6123405288908642813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 171542828749143191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fc56f1340223064d9635bd4ba10c168, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  viewRadius: 77.76
+  viewAngle: 170
+  targetMask:
+    serializedVersion: 2
+    m_Bits: 0
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 0
+  visibleTargets: []
 --- !u!1 &171542828942468660
 GameObject:
   m_ObjectHideFlags: 0
