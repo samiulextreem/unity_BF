@@ -156,4 +156,4 @@ MonoBehaviour:
   ObjectToDamage: {fileID: 0}
   HP: {fileID: 0}
   playerBullateDamage: 5
-  Collidedrb2D: {fileID: 0}
+  BloodEffect: {fileID: 4355358552732549675, guid: 434838f3d38026c4ab079643efff37a4, type: 3}

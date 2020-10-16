@@ -18,6 +18,7 @@ public class GrenadeBehaviour : MonoBehaviour
     public Rigidbody2D gndBody;
     public float throwForce;
     public float throwYangle;
+    public GameObject ExplotionPartical;
 
 
     void Start()
@@ -26,32 +27,28 @@ public class GrenadeBehaviour : MonoBehaviour
         Transform GndOriginalPos = plyr.GetChild(3).GetComponent<Transform>();
         Vector3 x = GndOriginalPos.transform.right;
         Vector3 f = x + new Vector3(0f, throwYangle, 0);
-        print(f);
-
-
-       
+ 
         countdown = FuseTime;
         
         gndBody = this.GetComponent<Rigidbody2D>();
 
         gndBody.AddForce(f * throwForce, ForceMode2D.Impulse);
-
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        
-
-
-       
-
-
+  
         countdown = countdown - Time.deltaTime;
         
         if(countdown <= 0)
         {
             explodeGrenade();
+            if(ExplotionPartical != null)
+            {
+                Instantiate(ExplotionPartical, this.transform.position, Quaternion.identity);
+            }
             Destroy(gameObject);
         }
     }
@@ -67,6 +64,11 @@ public class GrenadeBehaviour : MonoBehaviour
         
         foreach(Collider2D nearbyObject in objectsInExplotion)
         {
+            ObjectHP hp = nearbyObject.GetComponent<ObjectHP>();
+            if(hp != null )
+            {
+                hp.reduceHP(grenadeDamage);
+            }
             Rigidbody2D rb2d = nearbyObject.GetComponent<Rigidbody2D>();
             if(rb2d != null && nearbyObject.name != this.name)
             {
@@ -76,10 +78,10 @@ public class GrenadeBehaviour : MonoBehaviour
                 
                 explotionDir.y = explotionDir.y + upwardsModifier;
                 explotionDir.Normalize();
-                //print("Name -- " + nearbyObject.name + " normalize explotdir -- " + explotionDir + "  explot dist --" + explotionDist);
+                print("Name -- " + nearbyObject.name + " normalize explotdir -- " + explotionDir + "  explot dist --" + explotionDist);
 
                 rb2d.AddForce( xplotionForce* explotionDir,ForceMode2D.Impulse);
-                //rb2d.AddForce(explotionDir*xplotionForce, ForceMode2D.Force);
+                
 
             }
         }

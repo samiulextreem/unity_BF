@@ -7,7 +7,7 @@ public class ObjectHP : MonoBehaviour
     // Start is called before the first frame update
     public float InitialHP;
     public float currentHP;
-    public GameObject bloodSpalsh;
+    public GameObject destroyParticl;
     void Start()
     {
         //Debug.Log(this.name+" HP  "+ InitialHP);
@@ -21,10 +21,10 @@ public class ObjectHP : MonoBehaviour
         if(currentHP < 0)
         {
             //Debug.Log("should kill yourself");
-            if (bloodSpalsh != null)
+            if (destroyParticl != null)
             {
-                Instantiate(bloodSpalsh, this.transform.position,Quaternion.identity);
-                Debug.Log("should add blood splash");
+                Instantiate(destroyParticl, this.transform.position,Quaternion.identity);
+                
             }
             Destroy(gameObject);
             

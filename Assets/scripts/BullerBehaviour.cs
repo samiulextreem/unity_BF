@@ -21,6 +21,7 @@ public class BullerBehaviour : MonoBehaviour
     public ObjectHP HP;
     public float playerBullateDamage;
     //public Rigidbody2D Collidedrb2D;
+    public GameObject BloodEffect;
 
  
 
@@ -67,6 +68,8 @@ public class BullerBehaviour : MonoBehaviour
         }else if (collision.collider.gameObject.layer == LayerMask.NameToLayer("enemy"))
         {
             //print("object is " + collision.collider.gameObject.name);
+            Instantiate(BloodEffect, this.transform.position,Quaternion.identity);
+            Debug.Log("spawned blood effect");
             Destroy(gameObject);
         }
 

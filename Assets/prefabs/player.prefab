@@ -414,8 +414,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2077af62ef02f942ae9a208a3cc5c71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InitialHP: 20
+  InitialHP: 100
   currentHP: 0
+  destroyParticl: {fileID: 0}
 --- !u!114 &514027934
 MonoBehaviour:
   m_ObjectHideFlags: 0

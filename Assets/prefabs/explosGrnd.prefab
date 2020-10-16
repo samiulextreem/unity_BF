@@ -138,9 +138,10 @@ MonoBehaviour:
   countdown: 0
   xPlotionshake: 2
   xPlotiontime: 0.3
-  grenadeDamage: 10
+  grenadeDamage: 50
   xplotionRadious: 5
   xplotionForce: 100
   gndBody: {fileID: 0}
   throwForce: 50
   throwYangle: 0.4
+  ExplotionPartical: {fileID: 4355358552732549675, guid: 434838f3d38026c4ab079643efff37a4, type: 3}
