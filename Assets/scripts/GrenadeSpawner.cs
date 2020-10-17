@@ -41,7 +41,7 @@ public class GrenadeSpawner : MonoBehaviour
     void spawnGnd()
     {
         GameObject spawnedGnd = (GameObject)Instantiate(gnd, GndSpawnerPosition.position, GndSpawnerPosition.rotation);
-        print(spawnedGnd.name);
+        //print(spawnedGnd.name);
 
     }
 
