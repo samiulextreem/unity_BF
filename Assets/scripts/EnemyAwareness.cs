@@ -34,7 +34,7 @@ public class EnemyAwareness : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        print("i am alive");
+        //print("i am alive");
     }
 
     void FindVisibleTargets()
