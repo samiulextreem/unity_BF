@@ -1,4 +1,5 @@
-﻿using MiscUtil.Extensions.TimeRelated;
+﻿using JetBrains.Annotations;
+using MiscUtil.Extensions.TimeRelated;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
@@ -19,11 +20,17 @@ public class GrenadeBehaviour : MonoBehaviour
     public float throwForce;
     public float throwYangle;
     public GameObject ExplotionPartical;
-
+    public tileHealth tilHlt;
+    public float checkpointRad;
+    public Transform plyr;
+    public Vector3 pos;
 
     void Start()
     {
-        Transform plyr = GameObject.Find("player").transform;
+        tilHlt = GameObject.Find("Grid").GetComponentInChildren<tileHealth>();
+    
+        
+        plyr = GameObject.Find("player").transform;
         Transform GndOriginalPos = plyr.GetChild(3).GetComponent<Transform>();
         Vector3 x = GndOriginalPos.transform.right;
         Vector3 f = x + new Vector3(0f, throwYangle, 0);
@@ -34,6 +41,7 @@ public class GrenadeBehaviour : MonoBehaviour
 
         gndBody.AddForce(f * throwForce, ForceMode2D.Impulse);
         
+        
     }
 
     // Update is called once per frame
@@ -41,14 +49,17 @@ public class GrenadeBehaviour : MonoBehaviour
     {
   
         countdown = countdown - Time.deltaTime;
-        
-        if(countdown <= 0)
+        Debug.DrawRay(pos, Vector3.up, Color.red);
+
+        if (countdown <= 0)
         {
             explodeGrenade();
-            if(ExplotionPartical != null)
+            
+            if (ExplotionPartical != null)
             {
                 Instantiate(ExplotionPartical, this.transform.position, Quaternion.identity);
             }
+            
             Destroy(gameObject);
         }
     }
@@ -67,7 +78,7 @@ public class GrenadeBehaviour : MonoBehaviour
             ObjectHP hp = nearbyObject.GetComponent<ObjectHP>();
             if(hp != null )
             {
-                hp.reduceHP(grenadeDamage);
+                //hp.reduceHP(grenadeDamage);
             }
             Rigidbody2D rb2d = nearbyObject.GetComponent<Rigidbody2D>();
             if(rb2d != null && nearbyObject.name != this.name)
@@ -78,15 +89,36 @@ public class GrenadeBehaviour : MonoBehaviour
                 
                 explotionDir.y = explotionDir.y + upwardsModifier;
                 explotionDir.Normalize();
-                //print("Name -- " + nearbyObject.name + " normalize explotdir -- " + explotionDir + "  explot dist --" + explotionDist);
+                print("Name -- " + nearbyObject.name + " normalize explotdir -- " + explotionDir + "  explot dist --" + explotionDist);
 
                 rb2d.AddForce( xplotionForce* explotionDir,ForceMode2D.Impulse);
                 
 
             }
         }
+
+       
+     
+
+        for (int i = 0; i < checkpointRad; i++)
+        {
+            float angle = i;
+            for (float incremental = 0; incremental < xplotionRadious; incremental = incremental+.2f)
+            {
+                float x = Mathf.Cos(angle) *incremental;
+                float y = Mathf.Sin(angle) *incremental;
+                pos = this.transform.position + new Vector3(x, y, 0);
+                Debug.DrawRay(pos, Vector3.up, Color.red);
+                tilHlt.destructableTileMap.SetTile(tilHlt.destructableTileMap.WorldToCell(pos), null);
+
+            }
+
+            
+
+        }
         
-        explosionCameraShake.instance.shakeCamera(xPlotionshake, xPlotiontime);
+
+        //explosionCameraShake.instance.shakeCamera(xPlotionshake, xPlotiontime);
       
 
     }

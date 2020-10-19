@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 8470475388617446281}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 21.22, y: 3.0409749, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.4, y: 0.4, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -139,9 +139,13 @@ MonoBehaviour:
   xPlotionshake: 2
   xPlotiontime: 0.3
   grenadeDamage: 50
-  xplotionRadious: 5
-  xplotionForce: 100
+  xplotionRadious: 3
+  xplotionForce: 50
   gndBody: {fileID: 0}
   throwForce: 50
-  throwYangle: 0.4
+  throwYangle: 0.6
   ExplotionPartical: {fileID: 4355358552732549675, guid: 434838f3d38026c4ab079643efff37a4, type: 3}
+  tilHlt: {fileID: 0}
+  checkpointRad: 360
+  plyr: {fileID: 0}
+  pos: {x: 0, y: 0, z: 0}
