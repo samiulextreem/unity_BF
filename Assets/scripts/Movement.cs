@@ -18,8 +18,6 @@ public class Movement : MonoBehaviour
 
     private void Awake()
     {
-        
-       
     }
 
     void Start()

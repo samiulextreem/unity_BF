@@ -149,3 +149,4 @@ MonoBehaviour:
   checkpointRad: 360
   plyr: {fileID: 0}
   pos: {x: 0, y: 0, z: 0}
+  DestructionEffect: {fileID: 4355358552732549675, guid: 434838f3d38026c4ab079643efff37a4, type: 3}

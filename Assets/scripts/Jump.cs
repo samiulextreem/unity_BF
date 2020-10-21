@@ -7,9 +7,10 @@ public class Jump : MonoBehaviour
 {
     // Start is called before the first frame update
     private Rigidbody2D rb2d;
-    public Transform feetPosition;
+    public Transform feetPosition_1;
+    public Transform feetPosition_2;
    
-    public float checkradious;
+    public float checkdistance;
     public LayerMask whatIsGround;
     public int jump_force;
     public bool IsGrounded;
@@ -46,10 +47,21 @@ public class Jump : MonoBehaviour
     void Update()
     {
 
-        //issue 1---### when at the corner of an edge this IsGrounded return false so no jump (solved)
+        if(Physics2D.Raycast(feetPosition_1.position, -feetPosition_1.up,checkdistance,whatIsGround) || Physics2D.Raycast(feetPosition_2.position, -feetPosition_2.up, checkdistance, whatIsGround))
+        {
+            IsGrounded = true;
+        }
+        else
+        {
+            IsGrounded = false;
+        }
        
-        IsGrounded = Physics2D.OverlapCircle(feetPosition.position, checkradious, whatIsGround);
+       
         Debug.DrawRay(this.transform.position, this.transform.right * hit2dWallDetectionLength, Color.green);
+        Debug.DrawRay(feetPosition_1.position, - feetPosition_1.up* checkdistance,Color.white);
+        Debug.DrawRay(feetPosition_2.position, -feetPosition_2.up * checkdistance, Color.white);
+
+
         hit2dWallhanging = Physics2D.Raycast(this.transform.position, this.transform.right, hit2dWallDetectionLength, walllayer);
 
         if (clickbuttJump.isButtPres == true && (IsGrounded == true || jump_count > 1))

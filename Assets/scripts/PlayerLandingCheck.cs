@@ -31,9 +31,9 @@ public class PlayerLandingCheck : MonoBehaviour
         }
         if(isAirborn == true)
         {
-            if (Physics2D.OverlapCircle(jmp.feetPosition.position, jmp.checkradious, jmp.whatIsGround))
+            if (Physics2D.Raycast(jmp.feetPosition_1.position, -jmp.feetPosition_1.up,jmp.checkdistance, jmp.whatIsGround) || Physics2D.Raycast(jmp.feetPosition_2.position, -jmp.feetPosition_2.up, jmp.checkdistance, jmp.whatIsGround))
             {
-                //Debug.Log("Just landed");
+                Debug.Log("Just landed");
                 OnlandCameraShake.instance.shakeCamera(shakeIntensity, .1f);
                 isAirborn = false;
                 
