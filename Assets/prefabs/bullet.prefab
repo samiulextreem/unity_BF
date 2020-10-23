@@ -151,8 +151,8 @@ MonoBehaviour:
   originatePointforBullet: {fileID: 0}
   initialPos: 0
   randomSpreadRotationZ: 0
-  bulletSpreadMax: 0
-  bulletSpreadMin: 0
+  bulletSpreadMax: 1
+  bulletSpreadMin: -1
   ObjectToDamage: {fileID: 0}
   HP: {fileID: 0}
   playerBullateDamage: 5

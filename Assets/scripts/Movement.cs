@@ -90,7 +90,7 @@ public class Movement : MonoBehaviour
         rb2d.MovePosition(transform.position + movement_vec);
         
     }
-    void orient_myself(int angle)
+    public void orient_myself(int angle)
     {
         transform.eulerAngles = new Vector3(0, angle,0);         
     }

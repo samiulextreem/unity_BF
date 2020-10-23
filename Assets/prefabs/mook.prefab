@@ -346,6 +346,12 @@ MonoBehaviour:
   isMovingLeft: 0
   checkobstracle: 0.75
   gndChkrObjct: {fileID: 5990709395460613592}
+  IsMoving: 0
+  dicisionCooldown: 0
+  dicisionspread: 0
+  IstakingBreak: 0
+  highValue: 2
+  lowValue: 0
 --- !u!114 &94371326
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -358,7 +364,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c30033767ff12fa42a859f32b14a3c8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movement_speed: 8
+  movement_speed: 15
   player_mov_accelr: 0
   jstk: {fileID: 0}
 --- !u!58 &-594324632470271878

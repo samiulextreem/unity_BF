@@ -30,6 +30,7 @@ public class BullerBehaviour : MonoBehaviour
     void Start()
     {
         randomSpreadRotationZ = UnityEngine.Random.Range(bulletSpreadMin, bulletSpreadMax);
+        //print("random spread rotationz" + randomSpreadRotationZ);
         
         rb2dBullet = gameObject.GetComponent<Rigidbody2D>();
         originatePointforBullet = gameObject.GetComponent<Transform>();

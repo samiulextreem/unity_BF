@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System;
 using UnityEngine;
 
 public class EnemyAwareness : MonoBehaviour
@@ -27,12 +28,15 @@ public class EnemyAwareness : MonoBehaviour
     public GameObject gndChkrObjct;
     public bool IsMoving = false;
     public float dicisionCooldown;
+    public float flipSpreadCooldown;
+    private float flipspread;
     public float dicisionspread;
 
     public bool IstakingBreak = false;
-
-
-
+    public float highValue;
+    public float lowValue;
+    
+    
     void Start()
     {
         mkbulletspnr = mookBulPoint.GetComponent<mookBulletSpawner>();
@@ -56,7 +60,7 @@ public class EnemyAwareness : MonoBehaviour
             isMovingLeft = true;
         }
 
-        dicisionspread = UnityEngine.Random.Range(1, 0);
+        dicisionspread = UnityEngine.Random.Range(highValue, lowValue);
         if (dicisionspread > .5)
         {
             IsMoving = true;
@@ -84,26 +88,40 @@ public class EnemyAwareness : MonoBehaviour
         {
             if (dicisionCooldown <= 0)
             {
-
-
-                dicisionspread = UnityEngine.Random.Range(1, 0);
+                dicisionspread = UnityEngine.Random.Range(highValue, lowValue);
                 print("dicision spread  " + dicisionspread);
-                if (dicisionspread > .5)
+                dicisionCooldown = 3;
+            }
+            if (dicisionspread > 1)
+            {
+                //print("took dicision to move");
+                IsMoving = true;
+                IstakingBreak = false;
+            }
+            else if (dicisionspread < 1)
+            {
+                //print("took dicision to break");
+                IsMoving = false;
+                IstakingBreak = true;
+            }
+            if (flipSpreadCooldown <= 0)
+            {
+                flipspread = UnityEngine.Random.Range(highValue, lowValue);
+                print("flip spread  " + flipspread);
+                if(flipspread > 1)
                 {
-                    print("took dicision to move");
-                    IsMoving = true;
-                    IstakingBreak = false;
+                    print("i should flip");
+                    flipDirection();
                 }
-                else if (dicisionspread < .5)
-                {
-                    print("took dicision to break");
-                    IsMoving = false;
-                    IstakingBreak = true;
-                }
-                dicisionCooldown = 5;
+                
+                flipSpreadCooldown = 3;
 
             }
+            
+
+        
             dicisionCooldown = dicisionCooldown - Time.deltaTime;
+            flipSpreadCooldown = flipSpreadCooldown - Time.deltaTime;
 
 
 
@@ -148,7 +166,7 @@ public class EnemyAwareness : MonoBehaviour
             if (IstakingBreak == true)
             {
                 IsMoving = false;
-                Debug.Log(" break");
+                
             }
 
 
@@ -206,6 +224,20 @@ public class EnemyAwareness : MonoBehaviour
 
         }
 
+    }
+
+    void flipDirection()
+    {
+        if (this.transform.eulerAngles.y == 180)
+        {
+            mvmnt.orient_myself(0);
+            
+        }
+        if (this.transform.eulerAngles.y == 0)
+        {
+            
+            mvmnt.orient_myself(0);
+        }
     }
 
 
