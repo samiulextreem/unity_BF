@@ -35,6 +35,7 @@ public class EnemyAwareness : MonoBehaviour
     public bool IstakingBreak = false;
     public float highValue;
     public float lowValue;
+    public ObjectHP myHP;
     
     
     void Start()
@@ -43,6 +44,7 @@ public class EnemyAwareness : MonoBehaviour
         rbenmy = GetComponent<Rigidbody2D>();
         mkbulletspnr.FireRate = 0;
         gndChecker = gndChkrObjct.GetComponent<Transform>();
+        myHP = GetComponent<ObjectHP>();
 
         //print(mkbulletspnr.FireRate);
 
@@ -81,121 +83,117 @@ public class EnemyAwareness : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.DrawRay(gndChecker.position, -gndChecker.up, Color.yellow);
-        Physics2D.Raycast(gndChecker.position, -gndChecker.up, checkobstracle, whatIsGround);
-        Collider2D targetInArea = Physics2D.OverlapCircle(this.transform.position, searchRadious, playerMask);
-        if (IsAwareOfPlayer == false)
+        if(myHP.isDroppedDown == false)
         {
-            if (dicisionCooldown <= 0)
+            Debug.DrawRay(gndChecker.position, -gndChecker.up, Color.yellow);
+            Physics2D.Raycast(gndChecker.position, -gndChecker.up, checkobstracle, whatIsGround);
+            Collider2D targetInArea = Physics2D.OverlapCircle(this.transform.position, searchRadious, playerMask);
+            if (IsAwareOfPlayer == false)
             {
-                dicisionspread = UnityEngine.Random.Range(highValue, lowValue);
-                print("dicision spread  " + dicisionspread);
-                dicisionCooldown = 3;
-            }
-            if (dicisionspread > 1)
-            {
-                //print("took dicision to move");
-                IsMoving = true;
-                IstakingBreak = false;
-            }
-            else if (dicisionspread < 1)
-            {
-                //print("took dicision to break");
-                IsMoving = false;
-                IstakingBreak = true;
-            }
-            if (flipSpreadCooldown <= 0)
-            {
-                flipspread = UnityEngine.Random.Range(highValue, lowValue);
-                print("flip spread  " + flipspread);
-                if(flipspread > 1)
+                if (dicisionCooldown <= 0)
                 {
-                    print("i should flip");
-                    flipDirection();
+                    dicisionspread = UnityEngine.Random.Range(highValue, lowValue);
+                    //print("dicision spread  " + dicisionspread);
+                    dicisionCooldown = 3;
                 }
-                
-                flipSpreadCooldown = 3;
+                if (dicisionspread > 1)
+                {
+                    //print("took dicision to move");
+                    IsMoving = true;
+                    IstakingBreak = false;
+                }
+                else if (dicisionspread < 1)
+                {
+                    //print("took dicision to break");
+                    IsMoving = false;
+                    IstakingBreak = true;
+                }
+                if (flipSpreadCooldown <= 0)
+                {
+                    flipspread = UnityEngine.Random.Range(highValue, lowValue);
+                    //print("flip spread  " + flipspread);
+                    if (flipspread > 1)
+                    {
+                        //print("i should flip");
+                        flipDirection();
+                    }
 
-            }
-            
+                    flipSpreadCooldown = 3;
 
-        
-            dicisionCooldown = dicisionCooldown - Time.deltaTime;
-            flipSpreadCooldown = flipSpreadCooldown - Time.deltaTime;
+                }
 
 
 
+                dicisionCooldown = dicisionCooldown - Time.deltaTime;
+                flipSpreadCooldown = flipSpreadCooldown - Time.deltaTime;
 
 
-            if (IsMoving == true)
-            {
-                Debug.Log(" moving");
-                IstakingBreak = false;
-                if (isMovingRight == true)
+
+                if (IsMoving == true)
+                {
+                    //Debug.Log(" moving");
+                    IstakingBreak = false;
+                    if (isMovingRight == true)
+                    {
+                        isMovingLeft = false;
+                        mvmnt.moving_right();
+                        if (Physics2D.Raycast(this.transform.position, this.transform.right, checkobstracle, whatIsGround))
+                        {
+                            isMovingLeft = true;
+                            isMovingRight = false;
+                        }
+                        if (!Physics2D.Raycast(gndChecker.position, -gndChecker.up, checkobstracle, whatIsGround))
+                        {
+                            isMovingLeft = true;
+                            isMovingRight = false;
+                        }
+                    }
+                    if (isMovingLeft == true)
+                    {
+                        isMovingRight = false;
+                        mvmnt.moving_left();
+                        if (Physics2D.Raycast(this.transform.position, this.transform.right, checkobstracle, whatIsGround))
+                        {
+                            isMovingLeft = false;
+                            isMovingRight = true;
+                        }
+                        if (!Physics2D.Raycast(gndChecker.position, -gndChecker.up, checkobstracle, whatIsGround))
+                        {
+                            isMovingLeft = false;
+                            isMovingRight = true;
+                        }
+                    }
+
+                }
+                if (IstakingBreak == true)
+                {
+                    IsMoving = false;
+
+                }
+
+
+
+
+                if (targetInArea != null && IsAwareOfPlayer == false)
+                {
+                    //enemy is aware of player and stop patrolling
+
+                    FindVisibleTargets(targetInArea);
+
+                }
+
+                if (IsAwareOfPlayer == true)
                 {
                     isMovingLeft = false;
-                    mvmnt.moving_right();
-                    if (Physics2D.Raycast(this.transform.position, this.transform.right, checkobstracle, whatIsGround))
-                    {
-                        isMovingLeft = true;
-                        isMovingRight = false;
-                    }
-                    if (!Physics2D.Raycast(gndChecker.position, -gndChecker.up, checkobstracle, whatIsGround))
-                    {
-                        isMovingLeft = true;
-                        isMovingRight = false;
-                    }
-                }
-                if (isMovingLeft == true)
-                {
                     isMovingRight = false;
-                    mvmnt.moving_left();
-                    if (Physics2D.Raycast(this.transform.position, this.transform.right, checkobstracle, whatIsGround))
-                    {
-                        isMovingLeft = false;
-                        isMovingRight = true;
-                    }
-                    if (!Physics2D.Raycast(gndChecker.position, -gndChecker.up, checkobstracle, whatIsGround))
-                    {
-                        isMovingLeft = false;
-                        isMovingRight = true;
-                    }
+
+
                 }
-
-            }
-            if (IstakingBreak == true)
-            {
-                IsMoving = false;
-                
-            }
-
-
-
-
-
-
-
-
-            if (targetInArea != null && IsAwareOfPlayer == false)
-            {
-                //enemy is aware of player and stop patrolling
-
-                FindVisibleTargets(targetInArea);
-
-            }
-
-            if (IsAwareOfPlayer == true)
-            {
-                isMovingLeft = false;
-                isMovingRight = false;
-
 
             }
 
         }
-
-
-
+   
     }
 
     void FindVisibleTargets(Collider2D targetInArea)

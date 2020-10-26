@@ -134,7 +134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ba4b5d2e583b0b40a86beb8fc9964e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FuseTime: 3
+  FuseTime: 2
   countdown: 0
   xPlotionshake: 2
   xPlotiontime: 0.3
@@ -150,3 +150,6 @@ MonoBehaviour:
   plyr: {fileID: 0}
   pos: {x: 0, y: 0, z: 0}
   DestructionEffect: {fileID: 4355358552732549675, guid: 434838f3d38026c4ab079643efff37a4, type: 3}
+  bodypartsLayer:
+    serializedVersion: 2
+    m_Bits: 32768

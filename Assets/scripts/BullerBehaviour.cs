@@ -78,7 +78,11 @@ public class BullerBehaviour : MonoBehaviour
         HP = ObjectToDamage.GetComponent<ObjectHP>();
         if (HP != null)
         {
-            HP.reduceHP(playerBullateDamage);
+           
+           HP.reduceHP(playerBullateDamage);
+            
+
+
            //print(ObjectToDamage.name + " has " + HP.currentHP);
 
         }

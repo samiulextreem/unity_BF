@@ -25,6 +25,7 @@ public class GrenadeBehaviour : MonoBehaviour
     public Transform plyr;
     public Vector3 pos;
     public GameObject DestructionEffect;
+    public LayerMask bodypartsLayer;
 
     void Start()
     {
@@ -98,7 +99,7 @@ public class GrenadeBehaviour : MonoBehaviour
             }
         }
 
-       
+      
      
 
         for (int i = 0; i < checkpointRad; i++)

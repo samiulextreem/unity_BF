@@ -293,8 +293,8 @@ Rigidbody2D:
   m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 1
-  m_Mass: 0.70228577
+  m_UseAutoMass: 0
+  m_Mass: 10
   m_LinearDrag: 3
   m_AngularDrag: 0.05
   m_GravityScale: 10
@@ -315,9 +315,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2077af62ef02f942ae9a208a3cc5c71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InitialHP: 10
+  InitialHP: 30
   currentHP: 0
   destroyParticl: {fileID: 4355358552732549675, guid: 434838f3d38026c4ab079643efff37a4, type: 3}
+  resudalHP: 0
+  isDroppedDown: 0
+  bodyPart: {fileID: 5938209443469377891, guid: 7cadcf746b25f14459fa01740a915c94, type: 3}
 --- !u!114 &6123405288908642813
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -348,10 +351,12 @@ MonoBehaviour:
   gndChkrObjct: {fileID: 5990709395460613592}
   IsMoving: 0
   dicisionCooldown: 0
+  flipSpreadCooldown: 0
   dicisionspread: 0
   IstakingBreak: 0
   highValue: 2
   lowValue: 0
+  myHP: {fileID: 0}
 --- !u!114 &94371326
 MonoBehaviour:
   m_ObjectHideFlags: 0
