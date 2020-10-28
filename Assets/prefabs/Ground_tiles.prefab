@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1366869908308194488}
   m_Layer: 31
   m_Name: Ground_tiles
-  m_TagString: Untagged
+  m_TagString: ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

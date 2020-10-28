@@ -5,6 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - bullet
+  - bodyPart
+  - grendXplosive
+  - ground
+  - bomber
+  - mook
   layers:
   - Default
   - TransparentFX

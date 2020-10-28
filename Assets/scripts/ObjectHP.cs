@@ -10,7 +10,16 @@ public class ObjectHP : MonoBehaviour
     public GameObject destroyParticl;
  
     public bool isDroppedDown = false;
-    public GameObject bodyPart;
+    public GameObject bodyPart_1;
+    public GameObject bodyPart_2;
+    public GameObject bodyPart_3;
+    public GameObject bodyPart_4;
+    public Transform bodTns_1;
+    public Transform bodTns_2;
+    public Transform bodTns_3;
+    public Transform bodTns_4;
+
+
     void Start()
     {
         //Debug.Log(this.name+" HP  "+ InitialHP);
@@ -33,10 +42,28 @@ public class ObjectHP : MonoBehaviour
         }
         if(currentHP < 0 && isDroppedDown == true)
         {
-            //spawn dismembered body part
-            Instantiate(bodyPart, this.transform.position, Quaternion.identity);
 
-            Instantiate(bodyPart, this.transform.position, Quaternion.identity);
+            //spawn dismembered body part
+            if(bodyPart_1 != null && bodTns_1 != null)
+            {
+                Instantiate(bodyPart_1, bodTns_1.position, Quaternion.identity);
+            }
+            if (bodyPart_2 != null && bodTns_2 != null)
+            {
+                Instantiate(bodyPart_2, bodTns_2.position, Quaternion.identity);
+            }
+
+            if (bodyPart_3 != null && bodTns_3 != null)
+            {
+                Instantiate(bodyPart_3, bodTns_3.position, Quaternion.identity);
+            }
+
+            if (bodyPart_4 != null && bodTns_4 != null)
+            {
+                Instantiate(bodyPart_4, bodTns_4.position, Quaternion.identity);
+            }
+
+            
             //print("should dismember unit");
             Destroy(gameObject);
         }

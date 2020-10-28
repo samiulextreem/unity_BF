@@ -3,7 +3,9 @@ using MiscUtil.Extensions.TimeRelated;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
+using UnityEditor.UIElements;
 using UnityEngine;
+
 
 public class GrenadeBehaviour : MonoBehaviour
 {
@@ -26,6 +28,11 @@ public class GrenadeBehaviour : MonoBehaviour
     public Vector3 pos;
     public GameObject DestructionEffect;
     public LayerMask bodypartsLayer;
+    public bool willDestroyNextFrame;
+    public float upwardsModifier = 0.8F;
+
+
+
 
     void Start()
     {
@@ -49,28 +56,62 @@ public class GrenadeBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-  
-        countdown = countdown - Time.deltaTime;
-        Debug.DrawRay(pos, Vector3.up, Color.red);
-
-        if (countdown <= 0)
+        if(willDestroyNextFrame == true)
         {
-            explodeGrenade();
-            
-            if (ExplotionPartical != null)
+            Collider2D[] bodypartInExplotion = Physics2D.OverlapCircleAll(transform.position, xplotionRadious);
+            foreach (Collider2D nearbybodypart in bodypartInExplotion)
             {
-                Instantiate(ExplotionPartical, this.transform.position, Quaternion.identity);
+                if (nearbybodypart.CompareTag("bodyPart"))
+                {
+                    //print(nearbybodypart.tag);
+                    Rigidbody2D rb2d = nearbybodypart.GetComponent<Rigidbody2D>();
+
+                    if (rb2d != null)
+                    {
+                        //AddExplosionForce(rb2d, xplotionForce,transform.position);
+                        var explotionDir = rb2d.position - (Vector2)transform.position;
+                        var explotionDist = explotionDir.magnitude;
+
+                        explotionDir.y = explotionDir.y + upwardsModifier;
+                        explotionDir.Normalize();
+                        //print("Name -- " + nearbyObject.name + " normalize explotdir -- " + explotionDir + "  explot dist --" + explotionDist);
+
+                        rb2d.AddForce(xplotionForce * explotionDir, ForceMode2D.Impulse);
+
+
+                    }
+                }
             }
-            
             Destroy(gameObject);
         }
+        else
+        {
+            countdown = countdown - Time.deltaTime;
+            Debug.DrawRay(pos, Vector3.up, Color.red);
+
+            if (countdown <= 0)
+            {
+                explodeGrenade();
+
+                if (ExplotionPartical != null)
+                {
+                    Instantiate(ExplotionPartical, this.transform.position, Quaternion.identity);
+                }
+
+                //Destroy(gameObject);
+            }
+
+        }
+  
+  
     }
 
 
 
     void explodeGrenade()
     {
-        float upwardsModifier = 0.8F;
+        
+        //print("executed explode func");
         
         //instanciate partical effect
         Collider2D[] objectsInExplotion = Physics2D.OverlapCircleAll(transform.position, xplotionRadious);
@@ -99,8 +140,12 @@ public class GrenadeBehaviour : MonoBehaviour
             }
         }
 
-      
-     
+
+       
+
+
+
+
 
         for (int i = 0; i < checkpointRad; i++)
         {
@@ -121,11 +166,12 @@ public class GrenadeBehaviour : MonoBehaviour
 
             }
 
-            
-
         }
-        
+       
 
+
+
+        willDestroyNextFrame = true;
         //explosionCameraShake.instance.shakeCamera(xPlotionshake, xPlotiontime);
       
 

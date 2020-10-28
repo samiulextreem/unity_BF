@@ -40,6 +40,7 @@ public class EnemyAwareness : MonoBehaviour
     
     void Start()
     {
+        print(this.tag);
         mkbulletspnr = mookBulPoint.GetComponent<mookBulletSpawner>();
         rbenmy = GetComponent<Rigidbody2D>();
         mkbulletspnr.FireRate = 0;
@@ -237,7 +238,5 @@ public class EnemyAwareness : MonoBehaviour
             mvmnt.orient_myself(0);
         }
     }
-
-
 
 }
