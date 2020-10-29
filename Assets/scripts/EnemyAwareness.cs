@@ -40,7 +40,6 @@ public class EnemyAwareness : MonoBehaviour
     
     void Start()
     {
-        print(this.tag);
         mkbulletspnr = mookBulPoint.GetComponent<mookBulletSpawner>();
         rbenmy = GetComponent<Rigidbody2D>();
         mkbulletspnr.FireRate = 0;
@@ -48,7 +47,6 @@ public class EnemyAwareness : MonoBehaviour
         myHP = GetComponent<ObjectHP>();
 
         //print(mkbulletspnr.FireRate);
-
 
         if (this.transform.eulerAngles.y == 180)
         {
@@ -75,7 +73,6 @@ public class EnemyAwareness : MonoBehaviour
             IstakingBreak = true;
         }
 
-
     }
 
 
@@ -84,10 +81,72 @@ public class EnemyAwareness : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(myHP.isDroppedDown == false)
+
+        if (this.CompareTag("mook"))
         {
-            Debug.DrawRay(gndChecker.position, -gndChecker.up, Color.yellow);
-            Physics2D.Raycast(gndChecker.position, -gndChecker.up, checkobstracle, whatIsGround);
+            behaveConditionMook();
+     
+        }
+        if (this.CompareTag("bomber"))
+        {
+            behaveConditionBomber();
+        }
+
+   
+    }
+
+    void FindVisibleTargets(Collider2D targetInArea)
+    {
+
+        RaycastHit2D[] hitObject = Physics2D.RaycastAll(transform.position, (targetInArea.transform.position - this.transform.position).normalized, searchRadious);
+
+        Debug.DrawLine(this.transform.position, (this.transform.position + (targetInArea.transform.position - this.transform.position).normalized * 3), Color.blue);
+
+        Debug.DrawLine(this.transform.position, targetInArea.transform.position, Color.white);
+        if (hitObject.Length > 1)
+        {
+            float angleDirection = Vector3.Angle(this.transform.right, (targetInArea.transform.position - this.transform.position).normalized);
+
+            if (hitObject[1].collider.gameObject.name == "player" && angleDirection < 55f)
+            {
+
+                //Debug.Log("object name " + hitObject[1].collider.gameObject.name);
+
+                //print("player angle is " + angleDirection);
+
+                IsAwareOfPlayer = true;
+                mkbulletspnr.FireRate = 2;
+                mkbulletspnr.ShouldMookShoot = true;
+            }
+
+        }
+
+    }
+
+    void flipDirection()
+    {
+        if (this.transform.eulerAngles.y == 180)
+        {
+            this.transform.eulerAngles = new Vector3(transform.eulerAngles.x, 0, transform.eulerAngles.z);
+            print("set rotation to zero");
+            return;
+            
+        }
+        if (this.transform.eulerAngles.y == 0)
+        {
+
+            this.transform.eulerAngles = new Vector3(transform.eulerAngles.x, 180, transform.eulerAngles.z);
+            print("set rotation to 180");
+            return;
+        }
+    }
+
+    void behaveConditionMook()
+    {
+        if (myHP.isDroppedDown == false)
+        {
+            //Debug.DrawRay(gndChecker.position, -gndChecker.up, Color.yellow);
+            //Physics2D.Raycast(gndChecker.position, -gndChecker.up, checkobstracle, whatIsGround);
             Collider2D targetInArea = Physics2D.OverlapCircle(this.transform.position, searchRadious, playerMask);
             if (IsAwareOfPlayer == false)
             {
@@ -119,16 +178,12 @@ public class EnemyAwareness : MonoBehaviour
                         flipDirection();
                     }
 
-                    flipSpreadCooldown = 3;
+                    flipSpreadCooldown = 2;
 
                 }
 
-
-
                 dicisionCooldown = dicisionCooldown - Time.deltaTime;
                 flipSpreadCooldown = flipSpreadCooldown - Time.deltaTime;
-
-
 
                 if (IsMoving == true)
                 {
@@ -194,49 +249,32 @@ public class EnemyAwareness : MonoBehaviour
             }
 
         }
-   
+
     }
 
-    void FindVisibleTargets(Collider2D targetInArea)
+    void behaveConditionBomber()
     {
-
-        RaycastHit2D[] hitObject = Physics2D.RaycastAll(transform.position, (targetInArea.transform.position - this.transform.position).normalized, searchRadious);
-
-        Debug.DrawLine(this.transform.position, (this.transform.position + (targetInArea.transform.position - this.transform.position).normalized * 3), Color.blue);
-
-        Debug.DrawLine(this.transform.position, targetInArea.transform.position, Color.white);
-        if (hitObject.Length > 1)
+        if(IsAwareOfPlayer == false)
         {
-            float angleDirection = Vector3.Angle(this.transform.right, (targetInArea.transform.position - this.transform.position).normalized);
-
-            if (hitObject[1].collider.gameObject.name == "player" && angleDirection < 55f)
+           
+            if(flipSpreadCooldown <= 0)
             {
+               
+                flipspread = UnityEngine.Random.Range(highValue, lowValue);
+               
+                if (flipspread > 1)
+                {
+                    print("should flip direction");
+                    flipDirection();
+                }
 
-                //Debug.Log("object name " + hitObject[1].collider.gameObject.name);
-
-                //print("player angle is " + angleDirection);
-
-                IsAwareOfPlayer = true;
-                mkbulletspnr.FireRate = 2;
-                mkbulletspnr.ShouldMookShoot = true;
+                flipSpreadCooldown = 2;
             }
-
-        }
-
-    }
-
-    void flipDirection()
-    {
-        if (this.transform.eulerAngles.y == 180)
-        {
-            mvmnt.orient_myself(0);
-            
-        }
-        if (this.transform.eulerAngles.y == 0)
-        {
-            
-            mvmnt.orient_myself(0);
+       
+            flipSpreadCooldown = flipSpreadCooldown - Time.deltaTime;
         }
     }
+
+
 
 }

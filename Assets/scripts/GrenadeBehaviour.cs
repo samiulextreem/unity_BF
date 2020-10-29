@@ -45,9 +45,7 @@ public class GrenadeBehaviour : MonoBehaviour
         Vector3 f = x + new Vector3(0f, throwYangle, 0);
  
         countdown = FuseTime;
-        
         gndBody = this.GetComponent<Rigidbody2D>();
-
         gndBody.AddForce(f * throwForce, ForceMode2D.Impulse);
         
         
@@ -56,6 +54,7 @@ public class GrenadeBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+     
         if(willDestroyNextFrame == true)
         {
             Collider2D[] bodypartInExplotion = Physics2D.OverlapCircleAll(transform.position, xplotionRadious);
