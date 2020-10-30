@@ -17,6 +17,7 @@ public class EnemyAwareness : MonoBehaviour
     public bool IsAwareOfPlayer;
     public bool isPlayerInarea = false;
     public GameObject mookBulPoint;
+    public GameObject bomberBomb;
     private mookBulletSpawner mkbulletspnr;
     public bool isPlayerPatroling;
     public Movement mvmnt;
@@ -41,6 +42,20 @@ public class EnemyAwareness : MonoBehaviour
     void Start()
     {
         mkbulletspnr = mookBulPoint.GetComponent<mookBulletSpawner>();
+
+        if(bomberBomb != null)
+        {
+            if (bomberBomb.activeSelf)
+            {
+                print("bober is  active");
+            }
+            if (!bomberBomb.activeSelf)
+            {
+                print("bober is not  active");
+
+            }
+        }
+        
         rbenmy = GetComponent<Rigidbody2D>();
         mkbulletspnr.FireRate = 0;
         gndChecker = gndChkrObjct.GetComponent<Transform>();
@@ -115,8 +130,7 @@ public class EnemyAwareness : MonoBehaviour
                 //print("player angle is " + angleDirection);
 
                 IsAwareOfPlayer = true;
-                mkbulletspnr.FireRate = 2;
-                mkbulletspnr.ShouldMookShoot = true;
+                
             }
 
         }
@@ -128,7 +142,7 @@ public class EnemyAwareness : MonoBehaviour
         if (this.transform.eulerAngles.y == 180)
         {
             this.transform.eulerAngles = new Vector3(transform.eulerAngles.x, 0, transform.eulerAngles.z);
-            print("set rotation to zero");
+            //print("set rotation to zero");
             return;
             
         }
@@ -136,7 +150,7 @@ public class EnemyAwareness : MonoBehaviour
         {
 
             this.transform.eulerAngles = new Vector3(transform.eulerAngles.x, 180, transform.eulerAngles.z);
-            print("set rotation to 180");
+            //print("set rotation to 180");
             return;
         }
     }
@@ -227,9 +241,6 @@ public class EnemyAwareness : MonoBehaviour
 
                 }
 
-
-
-
                 if (targetInArea != null && IsAwareOfPlayer == false)
                 {
                     //enemy is aware of player and stop patrolling
@@ -242,6 +253,8 @@ public class EnemyAwareness : MonoBehaviour
                 {
                     isMovingLeft = false;
                     isMovingRight = false;
+                    mkbulletspnr.FireRate = 2;
+                    mkbulletspnr.ShouldMookShoot = true;
 
 
                 }
@@ -256,15 +269,15 @@ public class EnemyAwareness : MonoBehaviour
     {
         if(IsAwareOfPlayer == false)
         {
-           
-            if(flipSpreadCooldown <= 0)
+            Collider2D targetInArea = Physics2D.OverlapCircle(this.transform.position, searchRadious, playerMask);
+            if (flipSpreadCooldown <= 0)
             {
                
                 flipspread = UnityEngine.Random.Range(highValue, lowValue);
                
                 if (flipspread > 1)
                 {
-                    print("should flip direction");
+                    //print("should flip direction");
                     flipDirection();
                 }
 
@@ -272,6 +285,31 @@ public class EnemyAwareness : MonoBehaviour
             }
        
             flipSpreadCooldown = flipSpreadCooldown - Time.deltaTime;
+
+            if (targetInArea != null && IsAwareOfPlayer == false)
+            {
+                //enemy is aware of player and stop patrolling
+
+                FindVisibleTargets(targetInArea);
+
+            }
+            if (IsAwareOfPlayer == true)
+            {
+                isMovingLeft = false;
+                isMovingRight = false;
+
+                Debug.Log("FOUND PLAYERRRRRRRRRRRR");
+
+
+            }
+
+        }
+
+        if(IsAwareOfPlayer == true)
+        {
+            Debug.Log("run to enemy");
+            bomberBomb.SetActive(true);
+            
         }
     }
 

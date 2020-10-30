@@ -203,6 +203,7 @@ Transform:
   - {fileID: 171542827965772954}
   - {fileID: 5745853599529762108}
   - {fileID: 6529774852479708688}
+  - {fileID: 7510198114833949784}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
@@ -350,6 +351,7 @@ MonoBehaviour:
   IsAwareOfPlayer: 0
   isPlayerInarea: 0
   mookBulPoint: {fileID: 171542828942468660}
+  bomberBomb: {fileID: 8595229069938361878}
   isPlayerPatroling: 0
   mvmnt: {fileID: 94371326}
   isMovingRight: 1
@@ -596,6 +598,68 @@ Transform:
   m_Father: {fileID: 171542828749143179}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8595229069938361878
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7510198114833949784}
+  - component: {fileID: 4071748708542364335}
+  m_Layer: 9
+  m_Name: bomberBomb
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &7510198114833949784
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8595229069938361878}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 171542828749143179}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4071748708542364335
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8595229069938361878}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4900533441710b949bcb440261f44181, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FuseTime: 3
+  countdown: 0
+  xPlotionshake: 0
+  xPlotiontime: 0
+  grenadeDamage: 50
+  xplotionRadious: 10
+  xplotionForce: 3
+  DestructionEffect: {fileID: 4355358552732549675, guid: 434838f3d38026c4ab079643efff37a4, type: 3}
+  ExplotionPartical: {fileID: 4355358552732549675, guid: 434838f3d38026c4ab079643efff37a4, type: 3}
+  tilHlt: {fileID: 0}
+  checkpointRad: 10
+  Bomberplyr: {fileID: 171542828749143179}
+  pos: {x: 0, y: 0, z: 0}
+  bodypartsLayer:
+    serializedVersion: 2
+    m_Bits: 32768
+  willDestroyNextFrame: 0
+  upwardsModifier: 0.8
+  shouldDestroyBomber: 0
 --- !u!1 &9069141540647332668
 GameObject:
   m_ObjectHideFlags: 0
