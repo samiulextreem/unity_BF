@@ -37,24 +37,13 @@ public class EnemyAwareness : MonoBehaviour
     public float highValue;
     public float lowValue;
     public ObjectHP myHP;
-    
+    public GameObject playerPos;
     
     void Start()
     {
         mkbulletspnr = mookBulPoint.GetComponent<mookBulletSpawner>();
 
-        if(bomberBomb != null)
-        {
-            if (bomberBomb.activeSelf)
-            {
-                print("bober is  active");
-            }
-            if (!bomberBomb.activeSelf)
-            {
-                print("bober is not  active");
-
-            }
-        }
+     
         
         rbenmy = GetComponent<Rigidbody2D>();
         mkbulletspnr.FireRate = 0;
@@ -307,9 +296,28 @@ public class EnemyAwareness : MonoBehaviour
 
         if(IsAwareOfPlayer == true)
         {
-            Debug.Log("run to enemy");
-            bomberBomb.SetActive(true);
-            
+            //Debug.Log("run to enemy");
+
+            //bomberBomb.SetActive(true);
+            float distanceX;
+            if(playerPos != null)
+            {
+                distanceX = (playerPos.transform.position.x - this.transform.position.x);
+                print("distance x is "+distanceX);
+                mvmnt.movement_speed = 10;
+                if(distanceX > 1)
+                {
+                    mvmnt.moving_right();
+                }else if(distanceX < -1)
+                {
+                    mvmnt.moving_left();
+                }
+                if(Mathf.Abs(distanceX) < 1)
+                {
+                    bomberBomb.SetActive(true);
+                }
+            }
+
         }
     }
 

@@ -76,19 +76,27 @@ public class Movement : MonoBehaviour
         Vector3 movement_vec = new Vector3(1, 0, 0);
         movement_vec = movement_vec.normalized * movement_speed * Time.deltaTime;
 
-        rb2d.MovePosition(transform.position + movement_vec);
-        
+        //rb2d.MovePosition(transform.position + movement_vec);
+
+        float step = movement_speed * Time.deltaTime;
+        transform.position = Vector3.MoveTowards(transform.position, (transform.position + movement_vec), step);
+
+
+
     }
-   
+
     public void moving_left()
     {
        
         orient_myself(180);
         Vector3 movement_vec = new Vector3(-1,0,0);
         movement_vec = movement_vec.normalized * movement_speed * Time.deltaTime ;
-   
-        rb2d.MovePosition(transform.position + movement_vec);
+
+        //rb2d.MovePosition(transform.position + movement_vec);
         
+        float step = movement_speed * Time.deltaTime;
+        transform.position = Vector3.MoveTowards(transform.position, (transform.position+movement_vec), step);
+
     }
     public void orient_myself(int angle)
     {
