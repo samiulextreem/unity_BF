@@ -340,7 +340,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 3
+  m_LinearDrag: 0
   m_AngularDrag: 1
   m_GravityScale: 10
   m_Material: {fileID: 0}
@@ -374,7 +374,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c30033767ff12fa42a859f32b14a3c8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movement_speed: 15
+  movement_speed: 700
   player_mov_accelr: 0
   jstk: {fileID: 0}
 --- !u!114 &642630563
@@ -421,7 +421,14 @@ MonoBehaviour:
   currentHP: 0
   destroyParticl: {fileID: 4355358552732549675, guid: 434838f3d38026c4ab079643efff37a4, type: 3}
   isDroppedDown: 0
-  bodyPart: {fileID: 5938209443469377891, guid: 7cadcf746b25f14459fa01740a915c94, type: 3}
+  bodyPart_1: {fileID: 0}
+  bodyPart_2: {fileID: 0}
+  bodyPart_3: {fileID: 0}
+  bodyPart_4: {fileID: 0}
+  bodTns_1: {fileID: 0}
+  bodTns_2: {fileID: 0}
+  bodTns_3: {fileID: 0}
+  bodTns_4: {fileID: 0}
 --- !u!114 &514027934
 MonoBehaviour:
   m_ObjectHideFlags: 0

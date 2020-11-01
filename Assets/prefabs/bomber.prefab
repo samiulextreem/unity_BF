@@ -298,7 +298,7 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 10
   m_LinearDrag: 3
-  m_AngularDrag: 0.05
+  m_AngularDrag: 1
   m_GravityScale: 10
   m_Material: {fileID: 0}
   m_Interpolate: 0
@@ -341,7 +341,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fc56f1340223064d9635bd4ba10c168, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  searchRadious: 5
+  searchRadious: 8
   playerMask:
     serializedVersion: 2
     m_Bits: 1024
@@ -351,7 +351,7 @@ MonoBehaviour:
   IsAwareOfPlayer: 0
   isPlayerInarea: 0
   mookBulPoint: {fileID: 171542828942468660}
-  bomberBomb: {fileID: 8595229069938361878}
+  bmb: {fileID: 0}
   isPlayerPatroling: 0
   mvmnt: {fileID: 94371326}
   isMovingRight: 1
@@ -362,10 +362,12 @@ MonoBehaviour:
   dicisionCooldown: 0
   flipSpreadCooldown: 0
   dicisionspread: 0
+  bomberMvSpeed: 710
   IstakingBreak: 0
   highValue: 2
   lowValue: 0
   myHP: {fileID: 0}
+  playerPos: {fileID: 0}
 --- !u!114 &94371326
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -378,7 +380,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c30033767ff12fa42a859f32b14a3c8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movement_speed: 15
+  movement_speed: 700
   player_mov_accelr: 0
   jstk: {fileID: 0}
 --- !u!58 &-594324632470271878
@@ -609,12 +611,12 @@ GameObject:
   - component: {fileID: 7510198114833949784}
   - component: {fileID: 4071748708542364335}
   m_Layer: 9
-  m_Name: bomberBomb
+  m_Name: bombHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &7510198114833949784
 Transform:
   m_ObjectHideFlags: 0
@@ -646,7 +648,7 @@ MonoBehaviour:
   xPlotionshake: 0
   xPlotiontime: 0
   grenadeDamage: 50
-  xplotionRadious: 10
+  xplotionRadious: 3
   xplotionForce: 3
   DestructionEffect: {fileID: 4355358552732549675, guid: 434838f3d38026c4ab079643efff37a4, type: 3}
   ExplotionPartical: {fileID: 4355358552732549675, guid: 434838f3d38026c4ab079643efff37a4, type: 3}
@@ -660,6 +662,7 @@ MonoBehaviour:
   willDestroyNextFrame: 0
   upwardsModifier: 0.8
   shouldDestroyBomber: 0
+  IsfuseLit: 0
 --- !u!1 &9069141540647332668
 GameObject:
   m_ObjectHideFlags: 0

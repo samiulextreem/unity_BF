@@ -297,7 +297,7 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 10
   m_LinearDrag: 3
-  m_AngularDrag: 0.05
+  m_AngularDrag: 1
   m_GravityScale: 10
   m_Material: {fileID: 0}
   m_Interpolate: 0
@@ -350,6 +350,7 @@ MonoBehaviour:
   IsAwareOfPlayer: 0
   isPlayerInarea: 0
   mookBulPoint: {fileID: 171542828942468660}
+  bmb: {fileID: 0}
   isPlayerPatroling: 0
   mvmnt: {fileID: 94371326}
   isMovingRight: 1
@@ -364,6 +365,7 @@ MonoBehaviour:
   highValue: 2
   lowValue: 0
   myHP: {fileID: 0}
+  playerPos: {fileID: 0}
 --- !u!114 &94371326
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -376,7 +378,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c30033767ff12fa42a859f32b14a3c8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movement_speed: 15
+  movement_speed: 700
   player_mov_accelr: 0
   jstk: {fileID: 0}
 --- !u!58 &-594324632470271878

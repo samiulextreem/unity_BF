@@ -17,7 +17,7 @@ public class EnemyAwareness : MonoBehaviour
     public bool IsAwareOfPlayer;
     public bool isPlayerInarea = false;
     public GameObject mookBulPoint;
-    public GameObject bomberBomb;
+    public bomberBomb bmb;
     private mookBulletSpawner mkbulletspnr;
     public bool isPlayerPatroling;
     public Movement mvmnt;
@@ -32,6 +32,7 @@ public class EnemyAwareness : MonoBehaviour
     public float flipSpreadCooldown;
     private float flipspread;
     public float dicisionspread;
+    public int bomberMvSpeed = 710;
 
     public bool IstakingBreak = false;
     public float highValue;
@@ -244,6 +245,7 @@ public class EnemyAwareness : MonoBehaviour
                     isMovingRight = false;
                     mkbulletspnr.FireRate = 2;
                     mkbulletspnr.ShouldMookShoot = true;
+                    Debug.Log("FOUND PLAYERRRRRRRRRRRR");
 
 
                 }
@@ -256,69 +258,91 @@ public class EnemyAwareness : MonoBehaviour
 
     void behaveConditionBomber()
     {
-        if(IsAwareOfPlayer == false)
+        if (myHP.currentHP <= 0)
         {
-            Collider2D targetInArea = Physics2D.OverlapCircle(this.transform.position, searchRadious, playerMask);
-            if (flipSpreadCooldown <= 0)
+            bmb = GetComponentInChildren<bomberBomb>();
+            bmb.IsfuseLit = true;
+            bmb.countdown = 0;
+            print("logggggggggggggggggggggggggggggg");
+        }
+        if (myHP.isDroppedDown == false)
+        {
+
+            if (IsAwareOfPlayer == false)
             {
-               
-                flipspread = UnityEngine.Random.Range(highValue, lowValue);
-               
-                if (flipspread > 1)
+                Collider2D targetInArea = Physics2D.OverlapCircle(this.transform.position, searchRadious, playerMask);
+                if (flipSpreadCooldown <= 0)
                 {
-                    //print("should flip direction");
-                    flipDirection();
+
+                    flipspread = UnityEngine.Random.Range(highValue, lowValue);
+
+                    if (flipspread > 1)
+                    {
+                        //print("should flip direction");
+                        flipDirection();
+                    }
+
+                    flipSpreadCooldown = 2;
                 }
 
-                flipSpreadCooldown = 2;
+                flipSpreadCooldown = flipSpreadCooldown - Time.deltaTime;
+
+                if (targetInArea != null && IsAwareOfPlayer == false)
+                {
+                    //enemy is aware of player and stop patrolling
+
+                    FindVisibleTargets(targetInArea);
+
+                }
+                if (IsAwareOfPlayer == true)
+                {
+                    isMovingLeft = false;
+                    isMovingRight = false;
+
+                    Debug.Log("FOUND PLAYERRRRRRRRRRRR");
+
+
+                }
+
             }
-       
-            flipSpreadCooldown = flipSpreadCooldown - Time.deltaTime;
 
-            if (targetInArea != null && IsAwareOfPlayer == false)
-            {
-                //enemy is aware of player and stop patrolling
-
-                FindVisibleTargets(targetInArea);
-
-            }
             if (IsAwareOfPlayer == true)
             {
-                isMovingLeft = false;
-                isMovingRight = false;
+                bmb = GetComponentInChildren<bomberBomb>();
+                bmb.IsfuseLit = true;
+                //Debug.Log("run to enemy");
 
-                Debug.Log("FOUND PLAYERRRRRRRRRRRR");
+                //bomberBomb.SetActive(true);
+                float distanceX;
+                if (playerPos != null && bmb != null)
+                {
+                    distanceX = (playerPos.transform.position.x - this.transform.position.x);
+                    //print("distance x is "+distanceX);
 
+                    mvmnt.movement_speed = bomberMvSpeed;
+
+                    if (distanceX > 1)
+                    {
+                        mvmnt.moving_right();
+                    }
+                    else if (distanceX < -1)
+                    {
+                        mvmnt.moving_left();
+                    }
+                    if (Mathf.Abs(distanceX) < 1)
+                    {
+                        bmb.countdown = 0;
+                        //print("bomb countdown "+bmb.countdown);
+                    }
+                }
 
             }
 
-        }
-
-        if(IsAwareOfPlayer == true)
-        {
-            //Debug.Log("run to enemy");
-
-            //bomberBomb.SetActive(true);
-            float distanceX;
-            if(playerPos != null)
-            {
-                distanceX = (playerPos.transform.position.x - this.transform.position.x);
-                print("distance x is "+distanceX);
-                mvmnt.movement_speed = 10;
-                if(distanceX > 1)
-                {
-                    mvmnt.moving_right();
-                }else if(distanceX < -1)
-                {
-                    mvmnt.moving_left();
-                }
-                if(Mathf.Abs(distanceX) < 1)
-                {
-                    bomberBomb.SetActive(true);
-                }
-            }
 
         }
+
+
+
     }
 
 

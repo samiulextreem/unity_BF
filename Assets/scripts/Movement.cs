@@ -49,7 +49,7 @@ public class Movement : MonoBehaviour
             {
                 orient_myself(180);
             }
-            rb2d.velocity = new Vector2(player_mov_accelr * movement_speed, rb2d.velocity.y);
+            rb2d.velocity = new Vector2(player_mov_accelr * movement_speed * Time.deltaTime, rb2d.velocity.y);
 
         }
         
@@ -78,9 +78,9 @@ public class Movement : MonoBehaviour
 
         //rb2d.MovePosition(transform.position + movement_vec);
 
-        float step = movement_speed * Time.deltaTime;
-        transform.position = Vector3.MoveTowards(transform.position, (transform.position + movement_vec), step);
-
+        //float step = movement_speed * Time.deltaTime;
+        //transform.position = Vector3.MoveTowards(transform.position, (transform.position + movement_vec), step);
+        rb2d.velocity = movement_vec;
 
 
     }
@@ -89,13 +89,14 @@ public class Movement : MonoBehaviour
     {
        
         orient_myself(180);
-        Vector3 movement_vec = new Vector3(-1,0,0);
+        Vector2 movement_vec = new Vector2(-1,0);
         movement_vec = movement_vec.normalized * movement_speed * Time.deltaTime ;
 
         //rb2d.MovePosition(transform.position + movement_vec);
         
-        float step = movement_speed * Time.deltaTime;
-        transform.position = Vector3.MoveTowards(transform.position, (transform.position+movement_vec), step);
+        //float step = movement_speed * Time.deltaTime;
+        //transform.position = Vector3.MoveTowards(transform.position, (transform.position+movement_vec), step);
+        rb2d.velocity = movement_vec;
 
     }
     public void orient_myself(int angle)

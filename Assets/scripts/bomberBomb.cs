@@ -24,6 +24,7 @@ public class bomberBomb : MonoBehaviour
     public bool willDestroyNextFrame;
     public float upwardsModifier = 0.8F;
     public bool shouldDestroyBomber = false;
+    public bool IsfuseLit = false;
 
 
 
@@ -67,7 +68,7 @@ public class bomberBomb : MonoBehaviour
             }
             shouldDestroyBomber = true;
         }
-        else
+        else if(IsfuseLit == true)
         {
             countdown = countdown - Time.deltaTime;
             Debug.DrawRay(pos, Vector3.up, Color.red);
@@ -132,7 +133,7 @@ public class bomberBomb : MonoBehaviour
         for (int i = 0; i < checkpointRad; i++)
         {
             float angle = i;
-            for (float incremental = 0; incremental < xplotionRadious; incremental = incremental + .2f)
+            for (float incremental = 0; incremental < xplotionRadious; incremental += .2f)
             {
                 float x = Mathf.Cos(angle) * incremental;
                 float y = Mathf.Sin(angle) * incremental;
