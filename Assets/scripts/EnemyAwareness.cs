@@ -263,7 +263,7 @@ public class EnemyAwareness : MonoBehaviour
             bmb = GetComponentInChildren<bomberBomb>();
             bmb.IsfuseLit = true;
             bmb.countdown = 0;
-            print("logggggggggggggggggggggggggggggg");
+            
         }
         if (myHP.isDroppedDown == false)
         {
@@ -299,7 +299,7 @@ public class EnemyAwareness : MonoBehaviour
                     isMovingLeft = false;
                     isMovingRight = false;
 
-                    Debug.Log("FOUND PLAYERRRRRRRRRRRR");
+                    //Debug.Log("FOUND PLAYERRRRRRRRRRRR");
 
 
                 }

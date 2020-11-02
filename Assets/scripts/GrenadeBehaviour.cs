@@ -25,7 +25,7 @@ public class GrenadeBehaviour : MonoBehaviour
     public tileHealth tilHlt;
     public float checkpointRad;
     public Transform plyr;
-    public Vector3 pos;
+    public Vector3 incremntlTileDustructForGrand;
     public GameObject DestructionEffect;
     public LayerMask bodypartsLayer;
     public bool willDestroyNextFrame;
@@ -85,7 +85,7 @@ public class GrenadeBehaviour : MonoBehaviour
         else
         {
             countdown = countdown - Time.deltaTime;
-            Debug.DrawRay(pos, Vector3.up, Color.red);
+            Debug.DrawRay(incremntlTileDustructForGrand, Vector3.up, Color.red);
 
             if (countdown <= 0)
             {
@@ -151,12 +151,12 @@ public class GrenadeBehaviour : MonoBehaviour
             {
                 float x = Mathf.Cos(angle) *incremental;
                 float y = Mathf.Sin(angle) *incremental;
-                pos = this.transform.position + new Vector3(x, y, 0);
-                Debug.DrawRay(pos, Vector3.up, Color.red);
-                if (tilHlt.destructableTileMap.HasTile(tilHlt.destructableTileMap.WorldToCell(pos)))
+                incremntlTileDustructForGrand = this.transform.position + new Vector3(x, y, 0);
+                Debug.DrawRay(incremntlTileDustructForGrand, Vector3.up, Color.red);
+                if (tilHlt.destructableTileMap.HasTile(tilHlt.destructableTileMap.WorldToCell(incremntlTileDustructForGrand)))
                 {
-                    tilHlt.destructableTileMap.SetTile(tilHlt.destructableTileMap.WorldToCell(pos), null);
-                    Instantiate(DestructionEffect, pos, Quaternion.identity);
+                    tilHlt.destructableTileMap.SetTile(tilHlt.destructableTileMap.WorldToCell(incremntlTileDustructForGrand), null);
+                    Instantiate(DestructionEffect, incremntlTileDustructForGrand, Quaternion.identity);
 
 
                 }

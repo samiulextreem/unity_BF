@@ -70,7 +70,7 @@ public class BullerBehaviour : MonoBehaviour
         {
             //print("object is " + collision.collider.gameObject.name);
             Instantiate(BloodEffect, this.transform.position,Quaternion.identity);
-            Debug.Log("spawned blood effect");
+            //Debug.Log("spawned blood effect");
             Destroy(gameObject);
         }
 

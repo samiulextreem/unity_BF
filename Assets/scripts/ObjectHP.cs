@@ -18,20 +18,28 @@ public class ObjectHP : MonoBehaviour
     public Transform bodTns_2;
     public Transform bodTns_3;
     public Transform bodTns_4;
+    public xplosiveBrallel xplbarrel;
 
 
     void Start()
     {
         //Debug.Log(this.name+" HP  "+ InitialHP);
         currentHP = InitialHP;
-        
-        
-        
+        if (this.CompareTag("barrel"))
+        {
+            //print("this is xplosive barrel");
+            xplbarrel = GetComponent<xplosiveBrallel>();
+            //print("xplosive barrel status " + xplbarrel.Isdamaged);
+        }
+
+
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        //this is for player and enemy character
         if(currentHP < 15 && isDroppedDown == false)
         {
             //Debug.Log("should kill yourself");
@@ -67,13 +75,18 @@ public class ObjectHP : MonoBehaviour
             //print("should dismember unit");
             Destroy(gameObject);
         }
-
+  
         
     }
 
     public void reduceHP(float damage)
     {
         currentHP = currentHP - damage;
+        if(xplbarrel != null)
+        {
+            xplbarrel.Isdamaged = true;
+        }
+        
     }
 
 }
