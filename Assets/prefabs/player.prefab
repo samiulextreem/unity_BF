@@ -226,7 +226,7 @@ GameObject:
   - component: {fileID: 1128695426172906425}
   m_Layer: 10
   m_Name: player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -429,6 +429,7 @@ MonoBehaviour:
   bodTns_2: {fileID: 0}
   bodTns_3: {fileID: 0}
   bodTns_4: {fileID: 0}
+  xplbarrel: {fileID: 0}
 --- !u!114 &514027934
 MonoBehaviour:
   m_ObjectHideFlags: 0

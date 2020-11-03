@@ -27,6 +27,8 @@ public class EnemyAwareness : MonoBehaviour
     private Rigidbody2D rbenmy;
     private Transform gndChecker;
     public GameObject gndChkrObjct;
+    public float raydistance;
+
     public bool IsMoving = false;
     public float dicisionCooldown;
     public float flipSpreadCooldown;
@@ -39,11 +41,12 @@ public class EnemyAwareness : MonoBehaviour
     public float lowValue;
     public ObjectHP myHP;
     public GameObject playerPos;
-    
+    public bool targetInArea;
+
     void Start()
     {
         mkbulletspnr = mookBulPoint.GetComponent<mookBulletSpawner>();
-
+        playerPos = GameObject.Find("player");
      
         
         rbenmy = GetComponent<Rigidbody2D>();
@@ -100,28 +103,41 @@ public class EnemyAwareness : MonoBehaviour
    
     }
 
-    void FindVisibleTargets(Collider2D targetInArea)
+    void FindVisibleTargets(GameObject playerpos)
     {
-
-        RaycastHit2D[] hitObject = Physics2D.RaycastAll(transform.position, (targetInArea.transform.position - this.transform.position).normalized, searchRadious);
-
-        Debug.DrawLine(this.transform.position, (this.transform.position + (targetInArea.transform.position - this.transform.position).normalized * 3), Color.blue);
-
-        Debug.DrawLine(this.transform.position, targetInArea.transform.position, Color.white);
+        //print("direction" + (playerpos.transform.position - this.transform.position).normalized);
+        RaycastHit2D[] hitObject = Physics2D.RaycastAll(transform.position, (playerpos.transform.position - this.transform.position).normalized, (playerpos.transform.position - this.transform.position).magnitude);
+        Debug.DrawLine(this.transform.position, playerpos.transform.position, Color.white);
+        
+      
         if (hitObject.Length > 1)
         {
-            float angleDirection = Vector3.Angle(this.transform.right, (targetInArea.transform.position - this.transform.position).normalized);
-
-            if (hitObject[1].collider.gameObject.name == "player" && angleDirection < 55f)
+            float angleDirection = Vector3.Angle(this.transform.right, (playerpos.transform.position - this.transform.position).normalized);
+            if(angleDirection < 80f)
             {
+          
+                for (int i = 0; i < hitObject.Length; i++)
+                {
+                    //print("object name is " + i + " " + hitObject[i].collider.gameObject.tag);
 
-                //Debug.Log("object name " + hitObject[1].collider.gameObject.name);
+                    if (hitObject[i].collider.gameObject.CompareTag("ground"))
+                    {
+                        print("dirt found");
+                        return;
+                    }
+                    
+                    
+                    if (hitObject[i].collider.gameObject.CompareTag("Player"))
+                    {
+                        Debug.DrawRay(this.transform.position, (playerpos.transform.position - this.transform.position).normalized * (playerpos.transform.position - this.transform.position).magnitude, Color.blue);
+                        print("found player");
+                        IsAwareOfPlayer = true;
 
-                //print("player angle is " + angleDirection);
-
-                IsAwareOfPlayer = true;
-                
+                    }
+                }
             }
+            
+ 
 
         }
 
@@ -147,11 +163,16 @@ public class EnemyAwareness : MonoBehaviour
 
     void behaveConditionMook()
     {
+        if(playerPos == null)
+        {
+            return;
+        }
+        
         if (myHP.isDroppedDown == false)
         {
             //Debug.DrawRay(gndChecker.position, -gndChecker.up, Color.yellow);
             //Physics2D.Raycast(gndChecker.position, -gndChecker.up, checkobstracle, whatIsGround);
-            Collider2D targetInArea = Physics2D.OverlapCircle(this.transform.position, searchRadious, playerMask);
+            
             if (IsAwareOfPlayer == false)
             {
                 if (dicisionCooldown <= 0)
@@ -230,12 +251,23 @@ public class EnemyAwareness : MonoBehaviour
                     IsMoving = false;
 
                 }
+                if((playerPos.transform.position - this.transform.position).magnitude < searchRadious)
+                {
+                    //Debug.Log("distance magnitude"+ (playerPos.transform.position - this.transform.position).magnitude);
+                    targetInArea = true;
+                }
+                else
+                {
+                    targetInArea = false;
+                }
 
-                if (targetInArea != null && IsAwareOfPlayer == false)
+
+                
+                if (targetInArea == true && IsAwareOfPlayer == false)
                 {
                     //enemy is aware of player and stop patrolling
 
-                    FindVisibleTargets(targetInArea);
+                    FindVisibleTargets(playerPos);
 
                 }
 
@@ -245,7 +277,7 @@ public class EnemyAwareness : MonoBehaviour
                     isMovingRight = false;
                     mkbulletspnr.FireRate = 2;
                     mkbulletspnr.ShouldMookShoot = true;
-                    Debug.Log("FOUND PLAYERRRRRRRRRRRR");
+                    
 
 
                 }
@@ -253,7 +285,10 @@ public class EnemyAwareness : MonoBehaviour
             }
 
         }
-
+        else if(myHP.isDroppedDown == true)
+        {
+            mkbulletspnr.ShouldMookShoot = false;
+        }
     }
 
     void behaveConditionBomber()
@@ -270,7 +305,7 @@ public class EnemyAwareness : MonoBehaviour
 
             if (IsAwareOfPlayer == false)
             {
-                Collider2D targetInArea = Physics2D.OverlapCircle(this.transform.position, searchRadious, playerMask);
+               
                 if (flipSpreadCooldown <= 0)
                 {
 
@@ -286,12 +321,11 @@ public class EnemyAwareness : MonoBehaviour
                 }
 
                 flipSpreadCooldown = flipSpreadCooldown - Time.deltaTime;
-
+                Collider2D targetInArea = Physics2D.OverlapCircle(this.transform.position, searchRadious, playerMask);
                 if (targetInArea != null && IsAwareOfPlayer == false)
                 {
-                    //enemy is aware of player and stop patrolling
 
-                    FindVisibleTargets(targetInArea);
+                    //FindVisibleTargets(targetInArea);
 
                 }
                 if (IsAwareOfPlayer == true)

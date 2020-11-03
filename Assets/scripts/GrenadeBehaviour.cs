@@ -165,13 +165,9 @@ public class GrenadeBehaviour : MonoBehaviour
 
         }
        
-
-
-
         willDestroyNextFrame = true;
         //explosionCameraShake.instance.shakeCamera(xPlotionshake, xPlotiontime);
       
-
     }
 
 

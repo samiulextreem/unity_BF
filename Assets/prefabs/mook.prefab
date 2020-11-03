@@ -328,6 +328,7 @@ MonoBehaviour:
   bodTns_2: {fileID: 5244280775310783826}
   bodTns_3: {fileID: 206929708181782248}
   bodTns_4: {fileID: 125118620874128739}
+  xplbarrel: {fileID: 0}
 --- !u!114 &6123405288908642813
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -340,7 +341,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fc56f1340223064d9635bd4ba10c168, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  searchRadious: 5
+  searchRadious: 20
   playerMask:
     serializedVersion: 2
     m_Bits: 1024
@@ -361,6 +362,7 @@ MonoBehaviour:
   dicisionCooldown: 0
   flipSpreadCooldown: 0
   dicisionspread: 0
+  bomberMvSpeed: 710
   IstakingBreak: 0
   highValue: 2
   lowValue: 0
