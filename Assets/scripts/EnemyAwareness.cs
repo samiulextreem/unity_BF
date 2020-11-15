@@ -87,7 +87,7 @@ public class EnemyAwareness : MonoBehaviour
 
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
 
         if (this.CompareTag("mook"))
@@ -122,7 +122,7 @@ public class EnemyAwareness : MonoBehaviour
 
                     if (hitObject[i].collider.gameObject.CompareTag("ground"))
                     {
-                        print("dirt found");
+                        //print("dirt found");
                         return;
                     }
                     

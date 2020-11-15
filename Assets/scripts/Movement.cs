@@ -40,19 +40,22 @@ public class Movement : MonoBehaviour
         //player_mov_accelr = Input.GetAxis("Horizontal");
         player_mov_accelr = jstk.Horizontal;
         if (Mathf.Abs(player_mov_accelr) > .3f){
-            
+            Vector3 movement_vec = new Vector3(1,0,0);
             if (player_mov_accelr > .3f)
             {
                 orient_myself(0);
+                movement_vec = new Vector3(1, 0, 0);
             }
             else if (player_mov_accelr < .3f)
             {
                 orient_myself(180);
+                movement_vec = new Vector3(-1, 0, 0);
             }
-            rb2d.velocity = new Vector2(player_mov_accelr * movement_speed * Time.deltaTime, rb2d.velocity.y);
 
+            movement_vec = movement_vec.normalized * movement_speed * Time.deltaTime;
+            //rb2d.velocity = new Vector2(player_mov_accelr * movement_speed * Time.deltaTime, rb2d.velocity.y);
+            rb2d.velocity = movement_vec;
         }
-        
 
      
     }
@@ -61,12 +64,7 @@ public class Movement : MonoBehaviour
     private void Jump_player(bool isGrounded)
     {
         print("time to jump");
-       
-
     }
-
-
-
 
 
 

@@ -96,7 +96,7 @@ GameObject:
   m_Layer: 10
   m_Name: GndPosition
   m_TagString: Untagged
-  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -143,7 +143,7 @@ GameObject:
   m_Layer: 0
   m_Name: gunpoint
   m_TagString: Untagged
-  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -188,7 +188,7 @@ GameObject:
   m_Layer: 0
   m_Name: feetPosition_1
   m_TagString: Player
-  m_Icon: {fileID: 419385456094870383, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -223,7 +223,7 @@ GameObject:
   - component: {fileID: 642630563}
   - component: {fileID: 1466986972}
   - component: {fileID: 514027934}
-  - component: {fileID: 1128695426172906425}
+  - component: {fileID: 4703749267663006167}
   m_Layer: 10
   m_Name: player
   m_TagString: Player
@@ -314,7 +314,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.020665526, y: 0.20576549}
+  m_Offset: {x: 0.036651015, y: 0.24058402}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -325,7 +325,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.0790823, y: 0.588469}
+  m_Size: {x: 1.0471113, y: 0.51883197}
   m_EdgeRadius: 0.00001
 --- !u!50 &132667809398388789
 Rigidbody2D:
@@ -446,7 +446,7 @@ MonoBehaviour:
   isAirborn: 0
   justLanded: 0
   shakeIntensity: 0.3
---- !u!58 &1128695426172906425
+--- !u!58 &4703749267663006167
 CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -459,9 +459,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.30217648}
+  m_Offset: {x: 0.03, y: 0.04}
   serializedVersion: 2
-  m_Radius: 0.19782352
+  m_Radius: 0.53
 --- !u!1 &7049599867325343701
 GameObject:
   m_ObjectHideFlags: 0
@@ -474,7 +474,7 @@ GameObject:
   m_Layer: 10
   m_Name: feetPosition_2
   m_TagString: Untagged
-  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
