@@ -53,8 +53,8 @@ public class Movement : MonoBehaviour
             }
 
             movement_vec = movement_vec.normalized * movement_speed * Time.deltaTime;
-            //rb2d.velocity = new Vector2(player_mov_accelr * movement_speed * Time.deltaTime, rb2d.velocity.y);
-            rb2d.velocity = movement_vec;
+            rb2d.velocity = new Vector2(player_mov_accelr * movement_speed * Time.deltaTime, rb2d.velocity.y);
+            ///rb2d.velocity = movement_vec;
         }
 
      
