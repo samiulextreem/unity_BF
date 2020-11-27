@@ -61,10 +61,6 @@ public class Movement : MonoBehaviour
     }
 
 
-    private void Jump_player(bool isGrounded)
-    {
-        print("time to jump");
-    }
 
 
 

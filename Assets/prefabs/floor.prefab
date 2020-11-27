@@ -53,7 +53,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -127,7 +127,15 @@ MonoBehaviour:
   currentHP: 0
   destroyParticl: {fileID: 0}
   isDroppedDown: 0
-  bodyPart: {fileID: 0}
+  bodyPart_1: {fileID: 0}
+  bodyPart_2: {fileID: 0}
+  bodyPart_3: {fileID: 0}
+  bodyPart_4: {fileID: 0}
+  bodTns_1: {fileID: 0}
+  bodTns_2: {fileID: 0}
+  bodTns_3: {fileID: 0}
+  bodTns_4: {fileID: 0}
+  xplbarrel: {fileID: 0}
 --- !u!50 &5350301251526651381
 Rigidbody2D:
   serializedVersion: 4

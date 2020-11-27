@@ -63,6 +63,7 @@ public class Jump : MonoBehaviour
 
 
         hit2dWallhanging = Physics2D.Raycast(this.transform.position, this.transform.right, hit2dWallDetectionLength, walllayer);
+    
 
         if (clickbuttJump.isButtPres == true && (IsGrounded == true || jump_count > 1))
         {
@@ -77,14 +78,12 @@ public class Jump : MonoBehaviour
         }
         if (hit2dWallhanging == true && IsGrounded == false && Mathf.Abs(jstk.Horizontal) > .3)
         {
-            //print("grabbed wall");
+           
             if (jump_count != 3)
             {
                 jump_count = 3;
 
             }
-
-
 
         }
         if (rb2d.velocity.y < 0)
