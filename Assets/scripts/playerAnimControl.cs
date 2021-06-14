@@ -12,9 +12,10 @@ public class playerAnimControl : MonoBehaviour
     private PlayerController playercntrl;
     private Jump playerJmp;
     public Joystick jstk;
-    const string PLAYER_IDLE = "player_idle";
-    const string PLAYER_RUN = "player_run";
-    const string PLAYER_JUMP = "player_jump";
+    const string PLAYER_IDLE = "rambro_idle";
+    const string PLAYER_RUN = "rambro_run";
+    const string PLAYER_JUMP_RISE = "rambro_jump_rise";
+    const string PLAYER_JUMP_FALL = "rambro_jump_fall";
     const string PLAYER_FALL = "player_fall";
     const string PLAYER_HIT = "player_hit";
     void Start()
@@ -47,13 +48,14 @@ public class playerAnimControl : MonoBehaviour
         else if (playerJmp.IsGrounded == false   && playerrb2d.velocity.y > 0)
         {
             //print("jump up animation is playing");
-            changeAnimState(PLAYER_JUMP);
+            changeAnimState(PLAYER_JUMP_RISE);
         }
 
         else if (playerJmp.IsGrounded == false && playerJmp.hit2dWallhanging == false  && playerrb2d.velocity.y < 0)
         {
             //print("jump down animation is playing");
-            changeAnimState(PLAYER_FALL);
+            changeAnimState(PLAYER_JUMP_FALL);
+            print("player falling");
         }
         else if (playerJmp.IsGrounded == false && playerJmp.hit2dWallhanging == true && Mathf.Abs(jstk.Horizontal) < .3f && playerrb2d.velocity.y < 0)
         {

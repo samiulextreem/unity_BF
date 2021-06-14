@@ -62,7 +62,7 @@ public class BulletSpawner : MonoBehaviour
     void Shoot(){
         //Debug.Log("spawning bullet");
         Instantiate(bullet,bulletSpawnerPosition.position,bulletSpawnerPosition.rotation);
-        changeAnimState(GUN_SHOOT);
+        //changeAnimState(GUN_SHOOT);
         //hasshootingOccured = true;
         //instanciate light 
     }

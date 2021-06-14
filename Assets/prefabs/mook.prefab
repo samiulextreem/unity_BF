@@ -305,9 +305,9 @@ GameObject:
   - component: {fileID: 1524149829055687489}
   - component: {fileID: 7589455373983507322}
   - component: {fileID: 1658437933948455169}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: weapons sim
-  m_TagString: Untagged
+  m_TagString: mook
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -320,8 +320,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5247538921009174045}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.145, y: -0.278, z: -0.13659927}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -0.1, y: -0.1, z: -0.13659927}
+  m_LocalScale: {x: 8.69, y: 5.98, z: 1}
   m_Children: []
   m_Father: {fileID: 171542828749143179}
   m_RootOrder: 4
@@ -384,10 +384,10 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 334a4e64d11264b49be82a76ab9a8a8d, type: 3}
+  m_SortingOrder: 11
+  m_Sprite: {fileID: 21300000, guid: f06aefe8585deb848995361598e03d28, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 1
+  m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 0.8, y: 0.32}
@@ -531,6 +531,7 @@ GameObject:
   - component: {fileID: 8290353938596787861}
   - component: {fileID: 3689532140496406952}
   - component: {fileID: 1495013099117109410}
+  - component: {fileID: 8214878}
   m_Layer: 0
   m_Name: body sim
   m_TagString: Untagged
@@ -547,7 +548,7 @@ Transform:
   m_GameObject: {fileID: 7953116412872562438}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -0.13659927}
-  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_LocalScale: {x: 9, y: 9, z: 0}
   m_Children: []
   m_Father: {fileID: 171542828749143179}
   m_RootOrder: 3
@@ -592,7 +593,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 317e97adfc5eddb4193857a5c33d5e47, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b8269aeed4f531542a1a1363385cdeff, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -611,7 +612,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7953116412872562438}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 9e48560065318324eaf6b7b370f1ca6a, type: 2}
   m_CullingMode: 0
@@ -622,6 +623,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &8214878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7953116412872562438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a697bd164d328d44196c76bf90501350, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8065792053416304919
 GameObject:
   m_ObjectHideFlags: 0
