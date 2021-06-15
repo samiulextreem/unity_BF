@@ -51,19 +51,17 @@ public class Movement : MonoBehaviour
                 orient_myself(180);
                 movement_vec = new Vector3(-1, 0, 0);
             }
-
             movement_vec = movement_vec.normalized * movement_speed * Time.deltaTime;
-            rb2d.velocity = new Vector2(player_mov_accelr * movement_speed * Time.deltaTime, rb2d.velocity.y);
+            rb2d.velocity = new Vector2((player_mov_accelr/Mathf.Abs(player_mov_accelr)) * movement_speed * Time.deltaTime, rb2d.velocity.y);
             ///rb2d.velocity = movement_vec;
+         
         }
-
-     
     }
 
 
 
 
-
+    // this below functions are for enemy movement only
     public void moving_right() 
     {
         orient_myself(0);

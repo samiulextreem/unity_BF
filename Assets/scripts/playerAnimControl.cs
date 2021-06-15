@@ -17,7 +17,6 @@ public class playerAnimControl : MonoBehaviour
     const string PLAYER_JUMP_RISE = "rambro_jump_rise";
     const string PLAYER_JUMP_FALL = "rambro_jump_fall";
     const string PLAYER_FALL = "player_fall";
-    const string PLAYER_HIT = "player_hit";
     void Start()
     {
         playerrb2d = transform.parent.GetComponent<Rigidbody2D>();
@@ -33,13 +32,13 @@ public class playerAnimControl : MonoBehaviour
         playerVelocity = playerrb2d.velocity.x;
         //print("is player grounded " + playerJmp.IsGrounded);
         //print("player velocity is  " + playerVelocity);
-        if (Mathf.Abs(playerVelocity) < 1 && playerJmp.IsGrounded == true)
+        if (Mathf.Abs(playerVelocity) == 0 && playerJmp.IsGrounded == true)
         {
 
             changeAnimState(PLAYER_IDLE);
 
         }
-        else if (Mathf.Abs(playerVelocity) > 1 && playerJmp.IsGrounded == true)
+        else if (Mathf.Abs(playerVelocity) > 0 && playerJmp.IsGrounded == true)
         {
 
             changeAnimState(PLAYER_RUN);
@@ -55,7 +54,7 @@ public class playerAnimControl : MonoBehaviour
         {
             //print("jump down animation is playing");
             changeAnimState(PLAYER_JUMP_FALL);
-            print("player falling");
+            //print("player falling");
         }
         else if (playerJmp.IsGrounded == false && playerJmp.hit2dWallhanging == true && Mathf.Abs(jstk.Horizontal) < .3f && playerrb2d.velocity.y < 0)
         {
@@ -81,7 +80,7 @@ public class playerAnimControl : MonoBehaviour
     void changeAnimState(string newState)
     {
         if (newState == currentAnimstate) return;
-        playerAnimator.Play(newState);
+        playerAnimator.CrossFade(newState,0,-1,0);
         currentAnimstate = newState;
     }
 

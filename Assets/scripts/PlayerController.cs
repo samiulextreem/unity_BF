@@ -25,12 +25,8 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
        
-       if (Input.anyKey)
-       {
-           
-            movmnt_script.player_movement();
-       }
-
+        movmnt_script.player_movement();
+       
     }
   
 

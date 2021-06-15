@@ -140,7 +140,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4055795900546965503}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.372, y: -0.454, z: 0}
+  m_LocalPosition: {x: 0.31, y: -0.75, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4151826590904566133}
@@ -233,7 +233,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.036651015, y: 0.24058402}
+  m_Offset: {x: 0.036651015, y: 0.38502705}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -244,7 +244,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.06, y: 0.51883197}
+  m_Size: {x: 1.06, y: 0.80771804}
   m_EdgeRadius: 0.00001
 --- !u!50 &4055795901410318150
 Rigidbody2D:
@@ -294,7 +294,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movement_speed: 700
-  player_mov_accelr: 0
+  player_mov_accelr: 50.56
   jstk: {fileID: 0}
 --- !u!114 &4055795901410318171
 MonoBehaviour:
@@ -364,7 +364,7 @@ MonoBehaviour:
   jmp: {fileID: 4055795901410318171}
   isAirborn: 0
   justLanded: 0
-  shakeIntensity: 0.3
+  shakeIntensity: 0
 --- !u!58 &4055795901410318172
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -378,9 +378,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.03, y: 0.04}
+  m_Offset: {x: 0.029999971, y: -0.23367065}
   serializedVersion: 2
-  m_Radius: 0.53
+  m_Radius: 0.6436706
 --- !u!1 &4055795901570203049
 GameObject:
   m_ObjectHideFlags: 0
@@ -523,7 +523,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4055795901613405561}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.46, y: -0.507, z: 0}
+  m_LocalPosition: {x: -0.34, y: -0.75, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4151826590904566133}
