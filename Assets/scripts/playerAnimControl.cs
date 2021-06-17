@@ -32,16 +32,15 @@ public class playerAnimControl : MonoBehaviour
         playerVelocity = playerrb2d.velocity.x;
         //print("is player grounded " + playerJmp.IsGrounded);
         //print("player velocity is  " + playerVelocity);
-        if (Mathf.Abs(playerVelocity) == 0 && playerJmp.IsGrounded == true)
+        if (Mathf.Abs(playerVelocity) < 5 && playerJmp.IsGrounded == true)
         {
-
-            changeAnimState(PLAYER_IDLE);
-
+ 
+            playerAnimator.SetBool("run", false);
         }
-        else if (Mathf.Abs(playerVelocity) > 0 && playerJmp.IsGrounded == true)
+        else if (Mathf.Abs(playerVelocity) > 5 && playerJmp.IsGrounded == true)
         {
 
-            changeAnimState(PLAYER_RUN);
+            playerAnimator.SetBool("run", true);
         }
 
         else if (playerJmp.IsGrounded == false   && playerrb2d.velocity.y > 0)

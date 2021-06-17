@@ -235,10 +235,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: mook
       objectReference: {fileID: 0}
-    - target: {fileID: 171542828749143191, guid: d429ff7b34092b841a49087a4d3f7e03, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d429ff7b34092b841a49087a4d3f7e03, type: 3}
 --- !u!114 &114853471 stripped
@@ -746,6 +742,10 @@ PrefabInstance:
       propertyPath: jstk
       value: 
       objectReference: {fileID: 1822479831}
+    - target: {fileID: 4055795901410318150, guid: fb465540fe84b264c9774b21edd9fe89, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: d343d5f4fc20c0c46adbe28fa731519f, type: 2}
     - target: {fileID: 4055795901410318168, guid: fb465540fe84b264c9774b21edd9fe89, type: 3}
       propertyPath: jstk
       value: 
@@ -815,6 +815,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4875708007400871362, guid: 2c7f74c8eef7dfa4cb82a72c6df443b5, type: 3}
+      propertyPath: m_Mode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4875708007400871363, guid: 2c7f74c8eef7dfa4cb82a72c6df443b5, type: 3}
       propertyPath: m_Tiles.Array.size
       value: 1434
