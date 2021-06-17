@@ -53,7 +53,7 @@ public class Movement : MonoBehaviour
             }
             movement_vec = movement_vec.normalized * movement_speed * Time.deltaTime;
             rb2d.velocity = new Vector2((player_mov_accelr/Mathf.Abs(player_mov_accelr)) * movement_speed * Time.deltaTime, rb2d.velocity.y);
-            Debug.Log("object is moving at a velocity"+rb2d.velocity);
+            //Debug.Log("object is moving at a velocity"+rb2d.velocity);
             
             ///rb2d.velocity = movement_vec;
          

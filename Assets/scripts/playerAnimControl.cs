@@ -32,33 +32,49 @@ public class playerAnimControl : MonoBehaviour
         playerVelocity = playerrb2d.velocity.x;
         //print("is player grounded " + playerJmp.IsGrounded);
         //print("player velocity is  " + playerVelocity);
+
         if (Mathf.Abs(playerVelocity) < 5 && playerJmp.IsGrounded == true)
         {
  
             playerAnimator.SetBool("run", false);
+            playerAnimator.SetBool("grounded", true);
+            playerAnimator.SetBool("jump_rise", false);
+            playerAnimator.SetBool("jump_fall", false);
+
         }
         else if (Mathf.Abs(playerVelocity) > 5 && playerJmp.IsGrounded == true)
         {
 
             playerAnimator.SetBool("run", true);
+            playerAnimator.SetBool("grounded", true);
+            playerAnimator.SetBool("jump_rise", false);
+            playerAnimator.SetBool("jump_fall", false);
         }
 
         else if (playerJmp.IsGrounded == false   && playerrb2d.velocity.y > 0)
         {
             //print("jump up animation is playing");
-            changeAnimState(PLAYER_JUMP_RISE);
+            playerAnimator.SetBool("run", false);
+            playerAnimator.SetBool("grounded", false);
+            playerAnimator.SetBool("jump_rise", true);
+            playerAnimator.SetBool("jump_fall", false);
+
         }
 
         else if (playerJmp.IsGrounded == false && playerJmp.hit2dWallhanging == false  && playerrb2d.velocity.y < 0)
         {
             //print("jump down animation is playing");
-            changeAnimState(PLAYER_JUMP_FALL);
+
             //print("player falling");
+            playerAnimator.SetBool("run", false);
+            playerAnimator.SetBool("grounded", false);
+            playerAnimator.SetBool("jump_rise", false);
+            playerAnimator.SetBool("jump_fall", true);
         }
         else if (playerJmp.IsGrounded == false && playerJmp.hit2dWallhanging == true && Mathf.Abs(jstk.Horizontal) < .3f && playerrb2d.velocity.y < 0)
         {
             //print("jump down animation is playing");
-            changeAnimState(PLAYER_FALL);
+            
         }
 
 
