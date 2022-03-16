@@ -1,12 +1,13 @@
 # unity_BF
-This is a repository for my pet project. looking for an artist to finish this one.
+This is a repository for my pet project. looking for an artist to finish the game.
 
 #Release
 To try the game check release section.
 
 #Features
 ---------------------------------------------------
-Everything is dustrictable(need to add apporiate explosion effect)
+#Everything is destructible
+(need to add apporiate explosion effect)
 
 ![Alt Text](https://github.com/samiulextreem/unity_BF/blob/main/gif/Hnet-image.gif)
 
