@@ -6,7 +6,7 @@ To try the game check release section.
 
 #Features
 ---------------------------------------------------
-#Everything is destructible
+-------Everything is destructible--------
 (need to add apporiate explosion effect)
 
 ![Alt Text](https://github.com/samiulextreem/unity_BF/blob/main/gif/Hnet-image.gif)
