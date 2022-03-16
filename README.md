@@ -10,15 +10,15 @@ Everything is dustrictable(need to add apporiate explosion effect)
 
 ![Alt Text](https://github.com/samiulextreem/unity_BF/blob/main/gif/Hnet-image.gif)
 
-
-
-
 Wall climbing(need to add animation)
 
+![Alt Text](https://github.com/samiulextreem/unity_BF/blob/main/gif/Hnet.com-image.gif)
 
 
+Body Dismemberment (needed to replace blocks with body parts)
 
-Body Dismemberment
+
+![Alt Text](https://github.com/samiulextreem/unity_BF/blob/main/gif/Hnet-image%20(1).gif)
 
 
 
