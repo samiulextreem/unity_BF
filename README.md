@@ -2,7 +2,8 @@
 This is a repository for my pet project. looking for an artist to finish the game.
 
 #Release
-To try the game check release section.
+
+To try the game, check release section.
 
 #Features
 ---------------------------------------------------
